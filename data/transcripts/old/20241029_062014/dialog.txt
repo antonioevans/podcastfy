@@ -1,0 +1,37 @@
+<Maria>
+*voice-over, smoky jazz in the background*  The air hung heavy with rain and regret in the city that never sleeps, but tonight, some secrets were better left buried.
+</Maria>
+<DetectiveSarah>
+*eyes narrowed, lips pursed around a cigarette* Another missing person report, and guess what? <break time='0.2s'/>  The last place they were seen... that damned church again.
+</DetectiveSarah>
+<OfficerMike>
+*shuffling papers, avoiding her gaze* You know, Detective, maybe it's just a coincidence? <break time='0.2s'/> People go missing in this city all the time.
+</OfficerMike>
+<DetectiveSarah>
+*scoffs, takes a long drag from her cigarette* Coincidence?  Three people vanish into thin air, all within a block of that dilapidated old church, and you're talking about coincidence? <break time='0.2s'/> Don't be a rookie all your life, Mike. 
+</DetectiveSarah>
+<OfficerMike>
+*stammering*  But Detective, the stories... everyone knows that place is bad news. <break time='0.2s'/>  They say...
+</OfficerMike>
+<DetectiveSarah>
+*cuts him off, voice like ice* I don't care about fairy tales, Mike. I care about facts. <break time='0.2s'/> And the fact is, we've got a missing persons case, and that church is the only lead we've got.
+</DetectiveSarah>
+*sound of footsteps echoing in the empty precinct hallway*
+<EmmaLawson>
+*voice smooth, almost melodic, but with an underlying current of something colder*  Looking for someone, officers?
+</EmmaLawson>
+<Maria>
+*voice-over, tension rising*  A new player enters the game, her motives shrouded in the same fog that clung to the city streets. 
+</Maria>
+<OfficerMike>
+*startled, fumbling for his notepad* Ma'am, this is a restricted area... can we see some identification?
+</OfficerMike>
+<EmmaLawson>
+*a slow smile spreading across her lips* I believe you're looking for me. And I might just have what you're looking for... information.
+</EmmaLawson>
+<DetectiveSarah>
+*stubbing out her cigarette, eyes locking onto Emma's*  Well, well, well. <break time='0.2s'/>  Looks like the night just got interesting. Talk.
+</DetectiveSarah>
+<Maria>
+*voice-over, fading into the music*  In the city that never sleeps, some secrets refuse to stay buried, and tonight, the truth was about to come calling.
+</Maria>

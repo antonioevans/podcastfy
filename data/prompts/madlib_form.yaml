@@ -1,0 +1,266 @@
+# Madlib Form Structure for Podcast Generation
+
+# Basic Episode Info
+episode_info:
+  topic:
+    type: "text"
+    label: "Main Topic"
+    placeholder: "e.g. Blue Hair, Missing Person"
+    required: true
+  
+  style:
+    type: "dropdown"
+    label: "Conversation Style"
+    options:
+      - "Audio Drama"
+      - "True Crime"
+      - "Mystery"
+      - "Thriller"
+      - "Horror"
+    default: "Audio Drama"
+  
+  tone:
+    type: "dropdown"
+    label: "Overall Tone"
+    options:
+      - "Dramatic"
+      - "Tense"
+      - "Mysterious"
+      - "Suspenseful"
+      - "Dark"
+    default: "Dramatic"
+  
+  length:
+    type: "dropdown"
+    label: "Episode Length"
+    options:
+      - "15 minutes"
+      - "30 minutes"
+      - "45 minutes"
+      - "60 minutes"
+    default: "30 minutes"
+
+# Scene Settings
+scene_settings:
+  location:
+    type: "dropdown"
+    label: "Main Location"
+    options:
+      - "Police Station Interior"
+      - "Interrogation Room"
+      - "Detective's Office"
+      - "Crime Scene"
+      - "Dark Alley"
+      - "Abandoned Building"
+      - "Suburban House"
+    default: "Interrogation Room"
+  
+  time_of_day:
+    type: "dropdown"
+    label: "Time of Day"
+    options:
+      - "Late Night"
+      - "Early Morning"
+      - "Rainy Evening"
+      - "Foggy Dawn"
+      - "Stormy Night"
+    default: "Late Night"
+  
+  weather:
+    type: "dropdown"
+    label: "Weather/Atmosphere"
+    options:
+      - "Heavy Rain"
+      - "Thunder and Lightning"
+      - "Foggy"
+      - "Clear but Dark"
+      - "Misty"
+    default: "Heavy Rain"
+
+# Character Profiles
+characters:
+  detective:
+    appearance:
+      type: "dropdown"
+      label: "Detective's Appearance"
+      options:
+        - "Stern woman in dark suit"
+        - "Weathered detective in trenchcoat"
+        - "Sharp-dressed investigator"
+        - "Hardened veteran officer"
+      default: "Stern woman in dark suit"
+    
+    personality:
+      type: "dropdown"
+      label: "Detective's Personality"
+      options:
+        - "Methodical and stern"
+        - "Intuitive and determined"
+        - "Sharp and authoritative"
+        - "Calm and calculating"
+      default: "Methodical and stern"
+    
+    background:
+      type: "dropdown"
+      label: "Detective's Background"
+      options:
+        - "20 years on force, ex-military"
+        - "Decorated homicide veteran"
+        - "Rising star detective"
+        - "Legendary investigator"
+      default: "20 years on force, ex-military"
+  
+  officer:
+    appearance:
+      type: "dropdown"
+      label: "Officer's Appearance"
+      options:
+        - "Young officer in uniform"
+        - "Rookie cop, neat appearance"
+        - "Fresh-faced patrolman"
+        - "Eager young policeman"
+      default: "Young officer in uniform"
+    
+    personality:
+      type: "dropdown"
+      label: "Officer's Personality"
+      options:
+        - "Nervous but eager"
+        - "Enthusiastic learner"
+        - "Quick-thinking rookie"
+        - "Determined newcomer"
+      default: "Nervous but eager"
+    
+    background:
+      type: "dropdown"
+      label: "Officer's Background"
+      options:
+        - "3 years on force"
+        - "Recent academy graduate"
+        - "Small town transfer"
+        - "Former military"
+      default: "3 years on force"
+  
+  suspect:
+    appearance:
+      type: "dropdown"
+      label: "Suspect's Appearance"
+      options:
+        - "Cold teenage girl, calculating eyes"
+        - "Well-dressed young woman"
+        - "Unnervingly calm youth"
+        - "Pristine appearance, dead eyes"
+      default: "Cold teenage girl, calculating eyes"
+    
+    personality:
+      type: "dropdown"
+      label: "Suspect's Personality"
+      options:
+        - "Manipulative and intelligent"
+        - "Cold and calculated"
+        - "Detached and precise"
+        - "Unnaturally calm"
+      default: "Manipulative and intelligent"
+    
+    background:
+      type: "dropdown"
+      label: "Suspect's Background"
+      options:
+        - "Troubled past, antisocial"
+        - "History of manipulation"
+        - "Pattern of incidents"
+        - "Mysterious background"
+      default: "Troubled past, antisocial"
+
+# Case Details
+case:
+  type:
+    type: "dropdown"
+    label: "Type of Case"
+    options:
+      - "Disappearance"
+      - "Murder"
+      - "Cold Case"
+      - "Serial Crime"
+    default: "Disappearance"
+  
+  evidence:
+    type: "dropdown"
+    label: "Key Evidence"
+    options:
+      - "Blood evidence"
+      - "Crime scene photos"
+      - "Witness statements"
+      - "Security footage"
+    default: "Blood evidence"
+  
+  twist:
+    type: "dropdown"
+    label: "Case Twist"
+    options:
+      - "Family connection"
+      - "Hidden motive"
+      - "False identity"
+      - "Conspiracy"
+    default: "Family connection"
+
+# Episode Structure
+structure:
+  opening:
+    type: "dropdown"
+    label: "Opening Scene"
+    options:
+      - "Detective reviewing files"
+      - "Suspect brought in"
+      - "Crime scene discovery"
+      - "Witness interview"
+    default: "Detective reviewing files"
+  
+  climax:
+    type: "dropdown"
+    label: "Climactic Moment"
+    options:
+      - "Shocking confession"
+      - "Evidence revelation"
+      - "Suspect breakdown"
+      - "Detective realization"
+    default: "Evidence revelation"
+  
+  ending:
+    type: "dropdown"
+    label: "Episode Ending"
+    options:
+      - "Cliffhanger"
+      - "Case solved"
+      - "New evidence"
+      - "Twist reveal"
+    default: "Cliffhanger"
+
+# Additional Settings
+settings:
+  audience:
+    type: "dropdown"
+    label: "Target Audience"
+    options:
+      - "Suspense Fans"
+      - "True Crime Enthusiasts"
+      - "Mystery Lovers"
+      - "Thriller Audience"
+    default: "Suspense Fans"
+  
+  language:
+    type: "dropdown"
+    label: "Episode Language"
+    options:
+      - "English"
+      - "Spanish"
+      - "French"
+      - "Portuguese"
+    default: "English"
+  
+  ad_breaks:
+    type: "number"
+    label: "Number of Ad Breaks"
+    min: 1
+    max: 3
+    default: 2

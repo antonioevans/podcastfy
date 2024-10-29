@@ -1,0 +1,30 @@
+<Maria>
+*a smoky, jazz infused theme plays beneath her words*  The rain hammered the precinct windows, mirroring the storm brewing inside Detective Sarah's investigation. Another disappearance. Another victim last seen near Trinity Church. 
+</Maria>
+<DetectiveSarah>
+*taps a faded photograph*  John Doe, age 42. Jane Doe, age 28. And now, Michael Lawson, age 36. All vanished. All connected to that damned church.
+</DetectiveSarah>
+<OfficerMike>
+*shuffles nervously* You really think it's haunted, Detective?  <break time='0.2s'/> I mean, the stories... 
+</OfficerMike>
+<DetectiveSarah>
+*fixes him with a sharp look*  Stories are for rookies, Mike. Get me the file on Michael Lawson's wife. Emma Lawson.
+</DetectiveSarah>
+<Maria>
+*a low saxophone note hangs in the air*  Emma Lawson. A woman shrouded in whispers, a specter herself in the city's underbelly.
+</Maria>
+<EmmaLawson>
+*cigarette smoke curling around her face*  My husband?  He had a fondness for late-night walks. Especially near Trinity Church. Said it gave him peace. 
+</EmmaLawson>
+<DetectiveSarah>
+*leans forward, eyes narrowed*  Peace? Or something else, Mrs. Lawson?  A rendezvous, perhaps?
+</DetectiveSarah>
+<EmmaLawson>
+*a flicker of something cold in her eyes*  Detectives and their suspicions. It's almost cliché, isn't it?
+</EmmaLawson>
+<OfficerMike>
+*clears his throat nervously*  Ma'am, we just want to find your husband. 
+</OfficerMike>
+<Maria>
+*the jazz theme fades to a single, mournful trumpet*  The game had begun. A dance between hunter and hunted, with Trinity Church casting its long, dark shadow over them all. 
+</Maria>

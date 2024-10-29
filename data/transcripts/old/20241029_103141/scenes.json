@@ -1,0 +1,54 @@
+[
+  {
+    "start_time": 0,
+    "duration": 1,
+    "location": "Detective's Car",
+    "tone": "Ominous and suspenseful",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Rain-streaked windows",
+      "Streetlights reflecting in puddles",
+      "Abandoned church in the distance"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 12
+  },
+  {
+    "start_time": 1,
+    "duration": 1,
+    "location": "Church Entrance",
+    "tone": "Dark and foreboding",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Church steps slick with rain",
+      "Gargoyles casting long shadows",
+      "Detective's flickering lighter"
+    ],
+    "transitions": "Quick cut to next scene",
+    "shots": 12
+  },
+  {
+    "start_time": 2,
+    "duration": 1,
+    "location": "Church Steps",
+    "tone": "Tense and confrontational",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike",
+      "EmmaLawson"
+    ],
+    "key_elements": [
+      "Emma's red dress against the dark background",
+      "Mike's hand hovering near his holster",
+      "Close-up on Emma's enigmatic smile"
+    ],
+    "transitions": "Fade to black",
+    "shots": 12
+  }
+]

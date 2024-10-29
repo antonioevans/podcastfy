@@ -1,0 +1,33 @@
+<Maria>
+*A smoky haze hangs over the city as rain slicks the streets. Detective Sarah sits across from Emma Lawson, a woman with secrets in her eyes.* 
+</Maria>
+<DetectiveSarah>
+*neutral* <break time='0.2s'/>  You were seen near St. Sebastian's the night Mr. Davis vanished, Ms. Lawson. <break time='0.2s'/> Care to explain what you were doing there?
+</DetectiveSarah>
+<EmmaLawson>
+*neutral* <break time='0.2s'/>  I take walks, Detective. <break time='0.2s'/>  Especially when I can't sleep. Is that a crime now?
+</EmmaLawson>
+<OfficerMike>
+*shuffling papers nervously*  But Detective, everyone knows about St. Sebastian's. <break time='0.2s'/>  The stories...
+</OfficerMike>
+<DetectiveSarah>
+*neutral* <break time='0.2s'/>  Stories aren't evidence, Mike. <break time='0.2s'/> Ms. Lawson, several missing persons were last seen near that church.
+</DetectiveSarah>
+<EmmaLawson>
+*neutral* <break time='0.2s'/> A coincidence. <break time='0.2s'/>  A tragic one, but a coincidence nonetheless.
+</EmmaLawson>
+<DetectiveSarah>
+*neutral* <break time='0.2s'/>  Coincidence? <break time='0.2s'/>  Or something darker?
+</DetectiveSarah>
+<OfficerMike>
+*neutral* <break time='0.2s'/>  They say the catacombs under the church...
+</OfficerMike>
+<DetectiveSarah>
+*neutral* <break time='0.2s'/>  Enough, Mike. <break time='0.2s'/>  We'll get to the bottom of this, Ms. Lawson. With or without your help.
+</DetectiveSarah>
+<EmmaLawson>
+*a ghost of a smile plays on her lips*  I have nothing to hide, Detective.
+</EmmaLawson>
+<Maria>
+*The tension hangs thick in the air. Is Emma Lawson just a restless soul, or is she connected to the disappearances at St. Sebastian's? One thing is certain: in this city, some secrets refuse to stay buried. * 
+</Maria>

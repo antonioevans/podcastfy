@@ -1,0 +1,33 @@
+<Maria>
+*A lone streetlight flickers, casting an orange glow on the rain-slicked pavement outside the abandoned church.*
+</Maria>
+<DetectiveSarah>
+*squinting at the building*  Four disappearances. <break time='0.2s'/> All within a three-block radius. <break time='0.2s'/>  And each one last seen near this… this relic. 
+</DetectiveSarah>
+<OfficerMike>
+*shivering slightly*  You know, they say this place is cursed, Detective. <break time='0.2s'/>  People vanishing, strange noises at night...
+</OfficerMike>
+<DetectiveSarah>
+*dryly* I'm more concerned with facts, Mike, not ghost stories. <break time='0.2s'/> Did you find anything inside?
+</DetectiveSarah>
+<OfficerMike>
+*pulling out his notepad, flipping through damp pages* Just dust and cobwebs, ma'am. <break time='0.2s'/> And this. 
+</OfficerMike>
+<OfficerMike>
+*holds up a small, ornate silver locket, tarnished with age* Found it on the floor, near the altar.
+</OfficerMike>
+<DetectiveSarah>
+*taking the locket, examining it closely*  Interesting. <break time='0.2s'/> Run it through the system, see if it's connected to any of our missing persons. 
+</DetectiveSarah>
+<EmmaLawson>
+*stepping out from the shadows of the church entrance, her voice smooth as silk*  Looking for something, Detective? Or should I say, *someone*?
+</EmmaLawson>
+<DetectiveSarah>
+*spinning around, her hand instinctively reaching for her holster*  Who are you? And what are you doing here? 
+</DetectiveSarah>
+<EmmaLawson>
+*a sly smile playing on her lips*  Let's just say, I'm familiar with this place's secrets. <break time='0.2s'/> Secrets some would rather keep buried. 
+</EmmaLawson>
+<Maria>
+*The wind howls, rattling the church's broken stained-glass windows, as Detective Sarah stares down the mysterious woman. The line between truth and deception blurs in the shadows of the abandoned church.* 
+</Maria>

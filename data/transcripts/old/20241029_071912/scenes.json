@@ -1,0 +1,19 @@
+[
+  {
+    "start_time": 0,
+    "duration": 15,
+    "location": "Detective's Office",
+    "tone": "Mysterious",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Case files",
+      "Office lighting",
+      "Rain outside"
+    ],
+    "transitions": "Fade to next scene",
+    "shots": 3
+  }
+]

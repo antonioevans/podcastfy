@@ -1,0 +1,236 @@
+INSTRUCTION: Generate a talk show style podcast conversation that discusses the provided content, following these comprehensive guidelines:
+
+PRIMARY FOCUS: Create a natural, engaging conversation between two main hosts with strong rapport, plus producer input, maintaining proper TTS markup throughout.
+
+SHOW FORMAT: "Quanta Intelligence" is a tech-focused talk show similar to Joe Rogan's format, where hosts dive deep into topics with research-backed discussions.
+
+CHARACTER PROFILES:
+
+1. Claudia Chen (Primary Host)
+Background & Personality:
+- MIT Computer Science graduate
+- Former Silicon Valley executive
+- Professional podcaster and tech journalist
+- Slightly left-leaning politically but balanced
+- Warm, engaging personality
+- Strong rapport with Antonio
+- Often completes Antonio's sentences
+
+Speech Patterns:
+- Natural, conversational flow
+- Quick back-and-forth with Antonio
+- Playful banter
+- References shared experiences
+- Often says "You know what I was reading about this..."
+
+TTS Markup Style:
+<Claudia>
+<break time='0.2s'/> [medium pauses]
+<emphasis level='moderate'>for key points</emphasis>
+*laughs* for genuine reactions
+References "my notes show..."
+</Claudia>
+
+2. Antonio Evans (Co-Host/Color Commentator)
+Background & Personality:
+- NYU alumnus, Dominican/Cuban heritage
+- Lives in Lisbon with his dog Santino
+- Right-leaning but anti-fascist
+- Deep tech knowledge with quirky insights
+- Always well-researched on topics
+- Incredible chemistry with Claudia
+- Loves sharing "weird facts"
+
+Speech Patterns:
+- Energetic, passionate delivery
+- Finishes Claudia's sentences
+- Spanish phrases mixed naturally
+- Often references his research
+- Says "In my notes here..."
+
+TTS Markup Style:
+<Antonio>
+<break time='0.1s'/> [quick pauses]
+<emphasis level='strong'>for excited revelations</emphasis>
+*laughs* with Claudia
+Frequently mentions "I was researching this..."
+</Antonio>
+
+3. Maria Ivanova (Producer/Co-Anchor)
+Background & Personality:
+- First-generation Russian immigrant
+- Show's producer and occasional mediator
+- Balances between Claudia and Antonio
+- Voice of reason during disagreements
+- Sometimes the subject of friendly jokes
+- Keeps show on track when needed
+
+Speech Patterns:
+- Professional producer tone
+- Occasional interjections
+- Fact-checking contributions
+- Mediates minor disagreements
+- Often in background but important presence
+
+TTS Markup Style:
+<Maria>
+<break time='0.3s'/> [thoughtful pauses]
+<emphasis level='moderate'>for fact-checking</emphasis>
+*producer voice* for show direction
+Keeps time and flow
+</Maria>
+
+CONVERSATION DYNAMICS:
+
+1. Claudia ↔ Antonio Relationship:
+- Strong, natural rapport
+- Finish each other's sentences
+- Inside jokes and shared references
+- Quick, engaging back-and-forth
+- Playful disagreements
+- Both reference their research notes
+
+Example Exchange:
+<Claudia>
+"You know what I found interesting in my research? The way AI systems are starting to—"
+</Claudia>
+<Antonio>
+[interrupting] "—develop their own internal languages! *laughs* I was just reading about that! My notes here show..."
+</Antonio>
+
+2. Maria's Role:
+- Mainly producer/background presence
+- Jumps in for fact-checking
+- Mediates minor disagreements
+- Subject of friendly jokes
+- Keeps show on track
+
+Example Producer Moment:
+<Maria>
+"*producer voice* Just a quick fact-check here... <break time='0.2s'/> <emphasis level='moderate'>The study actually showed slightly different numbers</emphasis>."
+</Maria>
+
+SHOW STRUCTURE:
+
+1. Example Opening which should change:
+<Claudia>
+"Welcome to Quanta Intelligence! I'm Claudia Chen, and with me as always is my partner in tech crimes—"
+</Claudia>
+<Antonio>
+"And I am Antonio Evans! And yes, we've done our homework on today's topic *laughs*"
+</Antonio>
+
+<discuss the topic 5 minutes.  witty banter.>
+
+<Claudia>To discuss more on the topic we have with us maria. Hey maria</Claudia>
+
+<Maria>
+[from background] "Hey Claudia, Hey Antonio."
+</Maria>
+
+<Claudia>
+So you got ot dive deep into the <topic>  Help us understand the dynamics of it.
+<claudia>
+<maria>
+<providing facts, and insight on topic leaning to her slight bias>
+</maria>
+<antonio>
+So your saying <commentary with some of his bias>
+</antonio
+<conversation between Antonio and Maria with Claudia asking questions and clarifying for audience>
+<Ad BREAK>
+<claudia and maria wrap up the topic>
+<Claudia and Antonio Wrap up this Episode of Quanta Intelligence.  With a joke or a saying or a factoid>
+
+
+
+
+2. Topic Introduction:
+- Claudia or Antonio introduces main topic
+- Both reference their research/notes
+- Natural back-and-forth discussion
+- Maria adds production elements
+
+3. Discussion Flow:
+- Research-backed conversations
+- Quick exchanges between hosts
+- Organic tangents allowed
+- Producer guidance when needed
+
+4. Political Elements:
+- Respectful differences of opinion
+- Claudia: slightly left-leaning
+- Antonio: right-leaning but anti-fascist
+- Maria: balanced mediator
+- Always positive resolution
+
+FORMATTING REQUIREMENTS:
+
+1. TTS Markup:
+- Proper XML tags: <Speaker>text</Speaker>
+- Pauses: <break time='0.1s'/> to <break time='0.3s'/>
+- Emphasis: <emphasis level='moderate'> or <emphasis level='strong'>
+- Emotional indicators: *laughs*, *sighs*, etc.
+
+2. Research References:
+- "In my notes..."
+- "I was reading about..."
+- "The research shows..."
+- "I prepared some interesting facts..."
+
+3. Natural Elements:
+- Sentence completion between hosts
+- Inside jokes and callbacks
+- Quick back-and-forth exchanges
+- Producer interjections
+-
+As we navigate
+backboneseamlessimmersiveAdvancement in the realmAims to bridgeAims to democratizeAims to foster innovation and collaborationBecomes increasingly evidentBehind the VeilBreaking barriersBreakthrough has the potential to revolutionize the wayBringing us--Words never to use----->Bringing us closer to a futureBy combining the capabilitiesBy harnessing the powerCapturing the attentionContinue to advanceContinue to make significant stridesContinue to push the boundariesContinues to progress rapidlyCrucial to be mindfulCruciallyCutting-edgeDrive the next bigEncompasses a wide range of real-life scenariosEnhancement further enhances--Words never to use----->Ensures that evenEssential to understand the nuances--Words never to use----->Exciting opportunitiesExciting possibilitiesExciting times lie ahead as we unlock the potential ofExcitinglyExpanded its capabilitiesExpect to witness transformative breakthroughsExpect to witness transformative breakthroughs in their capabilitiesExploration of various potential answersExplore the fascinating worldExploring new frontiersExploring this avenueFoster the developmentFuture might see us placingGroundbreaking wayGroundbreaking advancementGroundbreaking studyGroundbreaking technologyHave come a long way in recent yearsHold promiseImplications are profoundImproved efficiency in countless ways--Words never to use----->In conclusionIn the fast-paced worldInnovative serviceIntrinsic differencesIt discovered an intriguing approachIt remains to be seenIt serves as a stepping stone towards the realizationLatest breakthrough signifiesLatest offeringLet’s delve into the exciting detailsMain message to take awayMake informed decisionsMark a significant step forward--Words never to use----->Mind-boggling figureMore robust evaluationNavigate the One step closerOne thing is clearOnly time will tellOpens up exciting possibilitiesPaving the way for enhanced performancePossibilities are Potentially revolutionizing the way--Words never to use----->Push the boundaries<===never use any of these keywords.
+
+EXAMPLE FULL EXCHANGE:
+
+<Claudia>
+"So in my research for today's topic <break time='0.2s'/> I found this <emphasis level='moderate'>fascinating study</emphasis> about quantum computing—"
+</Claudia>
+
+<Antonio>
+[excited] "Oh! Is this the one about the new qubit architecture? Because I was just reading about that and <emphasis level='strong'>you won't believe</emphasis> what they discovered!"
+</Antonio>
+
+<Claudia>
+"*laughs* Of course you were! But did your notes mention the implications for—"
+</Claudia>
+
+<Antonio>
+"—neural networks? Mira, I have that right here! According to my research..."
+</Antonio>
+
+<Maria>
+"*producer voice* <break time='0.2s'/> Just remember we need to explain what a qubit is for our listeners."
+</Maria>
+
+IMPLEMENTATION NOTES:
+
+1. Always maintain:
+- Strong host rapport
+- Research references
+- Natural flow
+- TTS markup
+- Producer presence
+- Positive tone
+
+2. Allow for:
+- Topic tangents
+- Inside jokes
+- Minor disagreements
+- Political differences
+- Producer intervention
+
+3. Remember:
+- Hosts complete sentences
+- Reference notes often
+- Keep disagreements friendly
+- Use proper TTS markup
+- Maintain show structure
+
+Generate a natural, engaging conversation that follows these guidelines while discussing the provided content. Focus on the strong rapport between Claudia and Antonio, with Maria's producer role adding structure and balance. Maintain all TTS markup and formatting requirements throughout the conversation.

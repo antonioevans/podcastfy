@@ -1,0 +1,138 @@
+[
+  {
+    "start_time": 0,
+    "duration": 15,
+    "location": "Detective's Office",
+    "tone": "Noir, mysterious",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Rain-streaked windows",
+      "Desk lamp casting shadows",
+      "Case files scattered"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 15,
+    "duration": 15,
+    "location": "Rain-Soaked Alley",
+    "tone": "Dark and foreboding",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Neon signs reflecting in puddles",
+      "Steam rising from vents",
+      "Fire escape shadows"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 30,
+    "duration": 15,
+    "location": "Dimly Lit Bar",
+    "tone": "Smoky and tense",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Half-empty glasses",
+      "Ceiling fan shadows",
+      "Vintage jukebox"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 45,
+    "duration": 15,
+    "location": "Abandoned Church",
+    "tone": "Gothic and eerie",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Broken stained glass",
+      "Dusty pews",
+      "Flickering candles"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 60,
+    "duration": 15,
+    "location": "Police Precinct",
+    "tone": "Bureaucratic tension",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Ringing phones",
+      "Coffee-stained reports",
+      "Buzzing fluorescent lights"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 75,
+    "duration": 15,
+    "location": "Victim's Apartment",
+    "tone": "Personal and unsettling",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Family photos",
+      "Half-finished meal",
+      "Open window with curtains"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 90,
+    "duration": 15,
+    "location": "Underground Parking Garage",
+    "tone": "Isolated danger",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Flickering lights",
+      "Concrete pillars",
+      "Distant echoes"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 105,
+    "duration": 15,
+    "location": "Interrogation Room",
+    "tone": "Clinical intensity",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Two-way mirror",
+      "Metal table",
+      "Harsh overhead light"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  }
+]

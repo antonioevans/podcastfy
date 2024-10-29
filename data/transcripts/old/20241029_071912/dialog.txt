@@ -1,0 +1,34 @@
+<Maria>
+*low, smoky tone* The air hung heavy in the precinct, thick with cigarette smoke and the weight of unsolved cases. 
+</Maria>
+<DetectiveSarah>
+*tapping a file on the table* Three missing persons in a month. <break time='0.2s'/> All last seen near Trinity Church. <break time='0.2s'/>  Don't tell me you buy into those ghost stories, Mike.
+</DetectiveSarah>
+<OfficerMike>
+*fidgeting with his hat*  Just saying, Detective, that place has a reputation. <break time='0.2s'/>  Folks around here, they say...
+</OfficerMike>
+<DetectiveSarah>
+*cutting him off* They say a lot of things. <break time='0.2s'/> I deal in facts. <break time='0.2s'/> Get me everything we have on Trinity Church. And find Emma Lawson. <break time='0.2s'/> She used to run with the group that hung out there.
+</DetectiveSarah>
+<Maria>
+*voice over a montage*  The city's underbelly held its breath as Detective Sarah delved deeper. Days bled into nights, the only light coming from flickering streetlamps and the burning ember of Sarah's cigarette.
+</Maria>
+<OfficerMike>
+*nervously* Found her, Detective. <break time='0.2s'/> Emma Lawson. She's at that speakeasy down on Bleaker Street.
+</OfficerMike>
+*Scene shifts to the smoky speakeasy, jazz music playing softly in the background*
+<DetectiveSarah>
+*eyes narrowed*  Emma Lawson, I presume. We need to talk.
+</DetectiveSarah>
+<EmmaLawson>
+*taking a long drag from a cigarette holder, blowing smoke into the dim light*  You got questions, Detective? <break time='0.2s'/> This place is full of them. <break time='0.2s'/> What makes yours special? 
+</EmmaLawson>
+<DetectiveSarah>
+*leans in, voice low and dangerous*  Three people are missing, Miss Lawson. All connected to that church. <break time='0.2s'/>  Now, you can play coy, but I always get my answers.
+</DetectiveSarah>
+<EmmaLawson>
+*a flicker of something in her eyes*  Maybe some answers are better left buried, Detective. 
+</EmmaLawson>
+<Maria>
+*voice over* The night was young, but the secrets it held were ancient, buried deep beneath layers of time and deceit. Detective Sarah was determined to unearth the truth, no matter the cost. 
+</Maria>

@@ -1,0 +1,28 @@
+<Maria>
+*voice echoing with a hint of dread*  The rain hammered the pavement of New York City, mirroring the relentless rhythm of a heart gripped by fear. Another disappearance, another empty life left echoing in the desolate halls of an abandoned church.
+</Maria>
+<DetectiveSarah>
+*eyes narrowed, staring at a map with red X's scattered across it* Three victims. All last seen within a block of that church. <break time='0.2s'/> Coincidence? I don't believe in coincidence. 
+</DetectiveSarah>
+<OfficerMike>
+*fidgeting with his hat*  But Detective, you know the rumors about that place. <break time='0.2s'/> They say it's cursed. That bad things…
+</OfficerMike>
+<DetectiveSarah>
+*cutting him off, voice sharp as broken glass*  We deal with facts, Officer, not fairy tales. Get me everything we have on the victims. And find out who's been inside that church. 
+</DetectiveSarah>
+<OfficerMike>
+*mumbling as he walks away* Yes, Detective. Right away.
+</OfficerMike>
+*sound of footsteps echoing in a large, empty space*
+<EmmaLawson>
+*voice smooth as silk, echoing slightly in the cavernous space*  Looking for something, Detective? Or perhaps *someone*?
+</EmmaLawson>
+<DetectiveSarah>
+*spinning around, hand instinctively reaching for her hip*  Who are you? What are you doing here?
+</DetectiveSarah>
+<EmmaLawson>
+*a knowing smirk playing on her lips*  This place holds many secrets, Detective. Some more tragic than others. <break time='0.2s'/>  Perhaps I can be of assistance.
+</EmmaLawson>
+<Maria>
+*voice dropping to a whisper* In the damp, oppressive air of the abandoned church, a dangerous game of cat and mouse was about to begin. One wrong step, and Detective Sarah would find herself lost in the labyrinth of shadows, another victim claimed by the secrets within those crumbling walls.
+</Maria>

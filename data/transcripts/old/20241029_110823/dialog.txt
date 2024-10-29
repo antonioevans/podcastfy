@@ -1,0 +1,30 @@
+<Maria>
+*A haze of cigarette smoke hangs in the air, the only light emanating from a flickering streetlamp outside the precinct window.*
+</Maria>
+<DetectiveSarah>
+*neutral* Three missing. <break time='0.2s'/> Same neighborhood. <break time='0.2s'/> Last seen near that damned church. <break time='0.2s'/>  There's a connection, I can feel it. 
+</DetectiveSarah>
+<OfficerMike>
+*neutral* <break time='0.2s'/> But Detective, that place... they say it's cursed. People talk about strange rituals, disappearances... 
+</OfficerMike>
+<DetectiveSarah>
+*neutral* <break time='0.2s'/> Rituals?  Don't be a fool, Mike. We deal in facts here, not ghost stories.
+</DetectiveSarah>
+<EmmaLawson>
+*A sly smile plays on her lips* Some stories, Detective, have a way of becoming true. 
+</EmmaLawson>
+<Maria>
+*Emma Lawson, a woman who seemed to melt into the shadows of the city, had become a person of interest. Her connection to the missing persons remained shrouded in mystery.* 
+</Maria>
+<OfficerMike>
+*neutral* You knew them, didn't you? All three of them. 
+</OfficerMike>
+<EmmaLawson>
+*neutral* This city is a tapestry of fleeting encounters, Officer. Who can say who they truly know?
+</EmmaLawson>
+<DetectiveSarah>
+*Slams a file on the table*  We'll find out, Ms. Lawson. We always do.
+</DetectiveSarah>
+<Maria>
+*The night deepened, the city holding its breath. One thing was clear: the truth, like the shadows themselves, held secrets yet unknown.* 
+</Maria>

@@ -1,17 +1,23 @@
+# Output Directories
 output_directories:
   transcripts: "./data/transcripts"
   audio: "./data/audio"
+  images: "./data/images"
+  videos: "./data/videos"
 
+# Content Generator
 content_generator:
   gemini_model: "gemini-1.5-pro-latest"
-  max_output_tokens: 8192
+  max_output_tokens: 2192
   prompt_template: "souzatharsis/podcastfy_multimodal"
 
+# Content Extractor
 content_extractor:
   youtube_url_patterns:
     - "youtube.com"
     - "youtu.be"
 
+# Website Extractor
 website_extractor:
   jina_api_url: "https://r.jina.ai"
   markdown_cleaning:
@@ -19,24 +25,6 @@ website_extractor:
       - '!\[.*?\]\(.*?\)'
       - '\[([^\]]+)\]\([^\)]+\)'
       - 'https?://\S+|www\.\S+'
-
-youtube_transcriber:
-  remove_phrases:
-    - "[music]"
-
-logging:
-  level: "INFO"
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-
-
-website_extractor:
-  markdown_cleaning:
-    remove_patterns:
-      - '\[.*?\]'  # Remove square brackets and their contents
-      - '\(.*?\)'  # Remove parentheses and their contents
-      - '^\s*[-*]\s'  # Remove list item markers
-      - '^\s*\d+\.\s'  # Remove numbered list markers
-      - '^\s*#+'  # Remove markdown headers
   unwanted_tags:
     - 'script'
     - 'style'
@@ -46,4 +34,73 @@ website_extractor:
     - 'aside'
     - 'noscript'
   user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-  timeout: 10  # Request timeout in seconds
+  timeout: 10
+
+# YouTube Transcriber
+youtube_transcriber:
+  remove_phrases:
+    - "[music]"
+
+# Image Generation
+image_generation:
+  width: 1920
+  height: 1080
+  style: "noir"
+  quality: "high"
+  max_retries: 3
+  timeout: 30
+  concurrent_requests: 5
+  formats:
+    - "png"
+    - "jpg"
+  default_style: "cartoon noir"
+  prompt_prefix: "A cartoon in the dark noir style of"
+  prompt_suffix: "style | cinematic noir, dark moody lighting, Twin Peaks inspired"
+
+# Video Generation
+video_generation:
+  fps: 30
+  codec: "libx264"
+  audio_codec: "aac"
+  preset: "medium"
+  threads: 4
+  resolution:
+    width: 1920
+    height: 1080
+  transition:
+    type: "fade"
+    duration: 0.5
+  output_format: "mp4"
+  temp_dir: "./data/temp"
+  cleanup_temp: true
+
+# Logging Configuration
+logging:
+  level: "DEBUG"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./data/logs/podcastfy.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 5
+  console:
+    enabled: true
+    level: "INFO"
+  file_logging:
+    enabled: true
+    level: "DEBUG"
+  handlers:
+    console:
+      class: "logging.StreamHandler"
+      level: "INFO"
+      formatter: "standard"
+    file:
+      class: "logging.handlers.RotatingFileHandler"
+      level: "DEBUG"
+      formatter: "detailed"
+      filename: "./data/logs/podcastfy.log"
+      maxBytes: 10485760
+      backupCount: 5
+  formatters:
+    standard:
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    detailed:
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(pathname)s:%(lineno)d - %(message)s"

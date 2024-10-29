@@ -1,0 +1,33 @@
+<Maria>
+*a smoky, jazz-infused score underscores the scene*  Another damp night in the city that never sleeps, but for some, the sleep has become eternal. 
+</Maria>
+<DetectiveSarah>
+*taps a faded photograph* Found near the church again. <break time='0.2s'/>  Same MO. <break time='0.2s'/> Vanished without a trace.
+</DetectiveSarah>
+<OfficerMike>
+*nervously runs a hand through his hair* You ever hear the stories about that place, Detective?  <break time='0.2s'/>  They say…
+</OfficerMike>
+<DetectiveSarah>
+*cuts him off with a sharp look* We deal in facts, Officer, not ghost stories.
+</DetectiveSarah>
+<OfficerMike>
+*clears his throat* Right. Of course, Detective.
+</OfficerMike>
+<EmmaLawson>
+*leans against the precinct doorjamb, a knowing smirk playing on her lips*  Some stories hold truths the living can’t afford to ignore, Detective.
+</EmmaLawson>
+<DetectiveSarah>
+*eyes narrowing*  You got something to say, Ms. Lawson, you say it. <break time='0.2s'/>  You were seen near that church.
+</DetectiveSarah>
+<EmmaLawson>
+*steps into the light, her expression unreadable*  This city's full of shadows. <break time='0.2s'/> Hard to say who's following who.
+</EmmaLawson>
+<OfficerMike>
+*shuffles his feet*  We just want to ask you a few questions, Ma’am. <break time='0.2s'/>  Routine, you understand.
+</OfficerMike>
+<DetectiveSarah>
+*fixes her gaze on Emma* Routine that might shed some light on these disappearances. <break time='0.2s'/> Unless you're afraid of what we might find.
+</DetectiveSarah> 
+<Maria>
+*the music swells, then fades to a low hum* One thing was clear: in this city of whispers, someone was holding the truth hostage. And Detective Sarah wasn't about to let it disappear into the night. 
+</Maria>

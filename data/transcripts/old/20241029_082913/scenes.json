@@ -1,0 +1,52 @@
+[
+  {
+    "start_time": 0,
+    "duration": 10,
+    "location": "Detective's Office",
+    "tone": "Tense and mysterious",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Rain-streaked windows",
+      "Case files",
+      "Flickering lights"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 10,
+    "duration": 10,
+    "location": "Dimly Lit Speakeasy",
+    "tone": "Smoky and secretive",
+    "characters": [
+      "DetectiveSarah",
+      "EmmaLawson"
+    ],
+    "key_elements": [
+      "Neon signs reflected in Emma's eyes",
+      "Cigarette smoke curling",
+      "Gloved hand holding a drink"
+    ],
+    "transitions": "Quick cut to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 20,
+    "duration": 10,
+    "location": "Exterior, Abandoned Church - Night",
+    "tone": "Ominous and threatening",
+    "characters": [
+      "DetectiveSarah"
+    ],
+    "key_elements": [
+      "Church silhouette against the moon",
+      "Detective's shadow stretching towards the church",
+      "Fog swirling around the church steps"
+    ],
+    "transitions": "Fade to black",
+    "shots": 3
+  }
+]

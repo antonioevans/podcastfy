@@ -1,0 +1,52 @@
+[
+  {
+    "start_time": 0,
+    "duration": 10,
+    "location": "Detective's Office",
+    "tone": "Tense and claustrophobic",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Rain-streaked windows",
+      "Faded photograph",
+      "Flickering desk lamp"
+    ],
+    "transitions": "Slow fade to black",
+    "shots": 3
+  },
+  {
+    "start_time": 10,
+    "duration": 10,
+    "location": "Emma's Apartment",
+    "tone": "Smoky and mysterious",
+    "characters": [
+      "DetectiveSarah",
+      "EmmaLawson"
+    ],
+    "key_elements": [
+      "Cigarette smoke",
+      "Half-empty glasses",
+      "Cityscape reflection in window"
+    ],
+    "transitions": "Sharp cut to black",
+    "shots": 3
+  },
+  {
+    "start_time": 20,
+    "duration": 10,
+    "location": "Outside Trinity Church",
+    "tone": "Ominous and foreboding",
+    "characters": [
+      "DetectiveSarah"
+    ],
+    "key_elements": [
+      "Church silhouette against the moon",
+      "Detective's trench coat blowing in the wind",
+      "Cobblestone street"
+    ],
+    "transitions": "Fade to black",
+    "shots": 3
+  }
+]

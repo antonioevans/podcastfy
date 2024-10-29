@@ -1,353 +1,286 @@
-"""
-Text-to-Speech Module
+"""Text to Speech Module"""
 
-This module provides functionality to convert text into speech using various TTS models.
-It supports both ElevenLabs, OpenAI and Edge TTS services and handles the conversion process,
-including cleaning of input text and merging of audio files.
-"""
-
+import os
 import logging
 import asyncio
 import edge_tts
-from elevenlabs import client as elevenlabs_client
-from podcastfy.utils.config import load_config
+import requests
+import json
+import time
+from elevenlabs.client import ElevenLabs
+from elevenlabs import VoiceSettings
 from podcastfy.utils.config_conversation import load_conversation_config
+from podcastfy.utils.config import load_config
 from pydub import AudioSegment
-import os
 import re
-import openai
 from typing import List, Tuple, Optional, Union
 
 logger = logging.getLogger(__name__)
 
+CHUNK_SIZE = 1024
+TARGET_DBFS = -20  # Target volume level
+CROSSFADE_DURATION = 500  # 500ms crossfade
+FADE_DURATION = 1000  # 1s fade in/out
+MAX_RETRIES = 3  # Maximum number of retries for API calls
+RETRY_DELAY = 5  # Delay between retries in seconds
+
 class TextToSpeech:
-	def __init__(self, model: str = 'openai', api_key: Optional[str] = None):
-		"""
-		Initialize the TextToSpeech class.
+    def __init__(self, model: str = 'openai', api_key: Optional[str] = None):
+        """Initialize the TextToSpeech class."""
+        self.model = model.lower()
+        self.config = load_config()
+        self.conversation_config = load_conversation_config()
+        self.tts_config = self.conversation_config.get('text_to_speech', {})
 
-		Args:
-			model (str): The model to use for text-to-speech conversion. 
-						 Options are 'elevenlabs', 'openai' or 'edge'. Defaults to 'openai'.
-			api_key (Optional[str]): API key for the selected text-to-speech service.
-						   If not provided, it will be loaded from the config.
-		"""
-		self.model = model.lower()
-		self.config = load_config()
-		self.conversation_config = load_conversation_config()
-		self.tts_config = self.conversation_config.get('text_to_speech')
+        # Character voice mappings
+        self.character_voices = {
+            "DetectiveSarah": {
+                "openai": "onyx",  # Deep, authoritative female voice
+                "elevenlabs": "pBZVCk298iJlHAcHQwLr",  # Latina detective voice
+                "style": "Professional, commanding"
+            },
+            "OfficerMike": {
+                "openai": "echo",  # Young male voice
+                "elevenlabs": "JVmMgKJbp4ER2bqrITpV",  # Young officer voice
+                "style": "Energetic, nervous"
+            },
+            "EmmaLawson": {
+                "openai": "nova",  # Cold female voice
+                "elevenlabs": "9xDZ0uWK4h0mYOKCXBnw",  # Cold, calculated voice
+                "style": "Detached, precise"
+            },
+            "Maria": {
+                "openai": "alloy",  # Professional narrator voice
+                "elevenlabs": "IvUzQuODMwxmPUiKQ7DJ",  # Narrator voice
+                "style": "Professional, atmospheric"
+            }
+        }
 
-		if self.model == 'elevenlabs':
-			self.api_key = api_key or self.config.ELEVENLABS_API_KEY
-			self.client = elevenlabs_client.ElevenLabs(api_key=self.api_key)
-		elif self.model == 'openai':
-			self.api_key = api_key or self.config.OPENAI_API_KEY
-			openai.api_key = self.api_key
-		elif self.model == 'edge':
-			pass
-		else:
-			raise ValueError("Invalid model. Choose 'elevenlabs', 'openai' or 'edge'.")
+        # Initialize API keys
+        if self.model == 'openai':
+            self.openai_key = api_key or self.config.OPENAI_API_KEY
+            if not self.openai_key:
+                raise ValueError("OPENAI_API_KEY not found in environment variables")
+        
+        self.elevenlabs_key = self.config.ELEVENLABS_API_KEY
+        if not self.elevenlabs_key:
+            raise ValueError("ELEVENLABS_API_KEY not found in environment variables")
 
-		self.audio_format = self.tts_config['audio_format']
-		self.temp_audio_dir = self.tts_config['temp_audio_dir']
-		self.ending_message = self.tts_config['ending_message']
+        self.audio_format = self.tts_config.get('audio_format', 'mp3')
+        self.temp_audio_dir = self.tts_config.get('temp_audio_dir', 'data/audio/tmp/')
+        os.makedirs(self.temp_audio_dir, exist_ok=True)
 
-		# Create temp_audio_dir if it doesn't exist
-		if not os.path.exists(self.temp_audio_dir):
-			os.makedirs(self.temp_audio_dir)
+        logger.info("Initialized TTS with character voices:")
+        for char, voices in self.character_voices.items():
+            logger.info(f"{char}: OpenAI={voices['openai']}, ElevenLabs={voices['elevenlabs']}")
 
-	def __merge_audio_files(self, input_dir: str, output_file: str) -> None:
-		"""
-		Merge all audio files in the input directory sequentially and save the result.
+    def __normalize_audio(self, audio: AudioSegment) -> AudioSegment:
+        """Simple volume normalization."""
+        change_in_dbfs = TARGET_DBFS - audio.dBFS
+        normalized = audio.apply_gain(change_in_dbfs)
+        logger.debug(f"Normalized audio from {audio.dBFS:.1f} to {normalized.dBFS:.1f} dBFS")
+        return normalized
 
-		Args:
-			input_dir (str): Path to the directory containing audio files.
-			output_file (str): Path to save the merged audio file.
-		"""
-		try:
-			# Function to sort filenames naturally
-			def natural_sort_key(filename: str) -> List[Union[int, str]]:
-				return [int(text) if text.isdigit() else text for text in re.split(r'(\d+)', filename)]
-			
-			combined = AudioSegment.empty()
-			audio_files = sorted(
-				[f for f in os.listdir(input_dir) if f.endswith(f".{self.audio_format}")],
-				key=natural_sort_key
-			)
-			for file in audio_files:
-				if file.endswith(f".{self.audio_format}"):
-					file_path = os.path.join(input_dir, file)
-					combined += AudioSegment.from_file(file_path, format=self.audio_format)
-			
-			combined.export(output_file, format=self.audio_format)
-			logger.info(f"Merged audio saved to {output_file}")
-		except Exception as e:
-			logger.error(f"Error merging audio files: {str(e)}")
-			raise
+    def __speech_to_speech(self, input_file: str, output_file: str, voice_id: str, style: str) -> None:
+        """Convert speech to speech using ElevenLabs with retry logic."""
+        retries = 0
+        while retries < MAX_RETRIES:
+            try:
+                logger.info(f"Converting speech to speech with voice {voice_id} ({style}) - Attempt {retries + 1}")
+                
+                sts_url = f"https://api.elevenlabs.io/v1/speech-to-speech/{voice_id}/stream"
+                
+                headers = {
+                    "Accept": "application/json",
+                    "xi-api-key": self.elevenlabs_key
+                }
+                
+                data = {
+                    "model_id": "eleven_english_sts_v2",
+                    "voice_settings": json.dumps({
+                        "stability": 0.5,
+                        "similarity_boost": 0.8,
+                        "style": 1.0,  # Increased style to better match character
+                        "use_speaker_boost": True
+                    })
+                }
+                
+                with open(input_file, "rb") as audio_file:
+                    files = {"audio": audio_file}
+                    response = requests.post(sts_url, headers=headers, data=data, files=files, stream=True)
+                
+                if response.ok:
+                    with open(output_file, "wb") as f:
+                        for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+                            f.write(chunk)
+                    logger.info(f"Successfully converted to {style} voice")
+                    return
+                elif response.status_code == 502:
+                    retries += 1
+                    if retries < MAX_RETRIES:
+                        logger.warning(f"ElevenLabs server error (502), retrying in {RETRY_DELAY} seconds...")
+                        time.sleep(RETRY_DELAY)
+                        continue
+                    else:
+                        logger.error("Max retries reached, falling back to OpenAI voice")
+                        # Copy the initial OpenAI audio as fallback
+                        with open(input_file, "rb") as src, open(output_file, "wb") as dst:
+                            dst.write(src.read())
+                        return
+                else:
+                    raise Exception(f"Speech-to-speech conversion failed: {response.text}")
+                    
+            except Exception as e:
+                retries += 1
+                if retries < MAX_RETRIES:
+                    logger.warning(f"Error in speech-to-speech conversion, retrying in {RETRY_DELAY} seconds: {str(e)}")
+                    time.sleep(RETRY_DELAY)
+                else:
+                    logger.error(f"Max retries reached, falling back to OpenAI voice: {str(e)}")
+                    # Copy the initial OpenAI audio as fallback
+                    with open(input_file, "rb") as src, open(output_file, "wb") as dst:
+                        dst.write(src.read())
+                    return
 
-	def convert_to_speech(self, text: str, output_file: str) -> None:
-		"""
-		Convert input text to speech and save as an audio file.
+    def split_dialogues(self, input_text: str) -> List[Tuple[str, str]]:
+        """Split the input text into a list of (speaker, dialogue) tuples."""
+        logger.debug("Splitting dialogues")
+        pattern = r'<(.*?)>(.*?)</\1>'
+        matches = re.findall(pattern, input_text, re.DOTALL)
+        
+        processed_matches = []
+        for speaker, text in matches:
+            # Remove emotes from the spoken text
+            clean_text = re.sub(r'\*[^*]+\*', '', text)
+            # Remove extra whitespace
+            clean_text = ' '.join(clean_text.split())
+            if clean_text.strip():  # Only add if there's actual dialog
+                processed_matches.append((speaker.strip(), clean_text.strip()))
+        
+        logger.info(f"Found {len(processed_matches)} dialogue segments")
+        for speaker, text in processed_matches:
+            logger.debug(f"Speaker: {speaker}, Text length: {len(text)}")
+        return processed_matches
 
-		Args:
-			text (str): Input text to convert to speech.
-			output_file (str): Path to save the output audio file.
+    def convert_to_speech(self, text: str, output_file: str) -> None:
+        """Convert input text to speech with normalization."""
+        try:
+            logger.info("Starting text to speech conversion")
+            dialogues = self.split_dialogues(text)
+            
+            audio_segments = []
+            counter = 0
 
-		Raises:
-			Exception: If there's an error in converting text to speech.
-		"""
-		# Clean TSS markup tags from the input text
-		cleaned_text = self.clean_tss_markup(text)
+            # Load and normalize theme music if exists
+            theme_music_path = os.path.join('C:\\', 'appz', 'podcastfy', 'data', 'audio', 'theme_music.mp3')
+            if os.path.exists(theme_music_path):
+                theme_music = AudioSegment.from_mp3(theme_music_path)
+                theme_music = self.__normalize_audio(theme_music)
+                theme_music = theme_music.fade_in(FADE_DURATION).fade_out(FADE_DURATION)
+                audio_segments.append(theme_music)
 
-		if self.model == 'elevenlabs':
-			self.__convert_to_speech_elevenlabs(cleaned_text, output_file)
-		elif self.model == 'openai':
-			self.__convert_to_speech_openai(cleaned_text, output_file)
-		elif self.model == 'edge':
-			self.__convert_to_speech_edge(cleaned_text, output_file)
+            # Process each dialogue segment
+            for speaker, content in dialogues:
+                if not content.strip():
+                    continue  # Skip empty lines
+                    
+                logger.info(f"Processing speaker: {speaker}")
+                
+                # Get character voice settings
+                char_voices = self.character_voices.get(speaker)
+                if not char_voices:
+                    logger.warning(f"No voice configuration for {speaker}, using default")
+                    char_voices = self.character_voices["Maria"]
+                
+                # Generate initial speech with OpenAI
+                headers = {
+                    "Authorization": f"Bearer {self.openai_key}",
+                    "Content-Type": "application/json"
+                }
 
-	def __convert_to_speech_elevenlabs(self, text: str, output_file: str) -> None:
-		try:
-			qa_pairs = self.split_qa(text)
-			audio_files = []
-			counter = 0
-			for question, answer in qa_pairs:
-				question_audio = self.client.generate(
-					text=question,
-					voice=self.tts_config['elevenlabs']['default_voices']['question'],
-					model=self.tts_config['elevenlabs']['model']
-				)
-				answer_audio = self.client.generate(
-					text=answer,
-					voice=self.tts_config['elevenlabs']['default_voices']['answer'],
-					model=self.tts_config['elevenlabs']['model']
-				)
+                data = {
+                    "model": "tts-1-hd",
+                    "input": content,
+                    "voice": char_voices["openai"],
+                    "response_format": self.audio_format,
+                    "speed": 1.0
+                }
 
-				# Save question and answer audio chunks
-				for audio in [question_audio, answer_audio]:
-					counter += 1
-					file_name = f"{self.temp_audio_dir}{counter}.{self.audio_format}"
-					with open(file_name, "wb") as out:
-						for chunk in audio:
-							if chunk:
-								out.write(chunk)
-					audio_files.append(file_name)
+                logger.info(f"Generating OpenAI speech with voice: {char_voices['openai']}")
+                response = requests.post(
+                    "https://api.openai.com/v1/audio/speech",
+                    headers=headers,
+                    json=data
+                )
 
-			# Merge all audio files and save the result
-			self.__merge_audio_files(self.temp_audio_dir, output_file)
+                if response.status_code != 200:
+                    raise Exception(f"OpenAI API error: {response.text}")
 
-			# Clean up individual audio files
-			for file in audio_files:
-				os.remove(file)
-			
-			logger.info(f"Audio saved to {output_file}")
+                # Save initial audio
+                counter += 1
+                initial_file = os.path.join(self.temp_audio_dir, f"initial_{counter}.{self.audio_format}")
+                with open(initial_file, "wb") as out:
+                    out.write(response.content)
+                
+                # Convert through ElevenLabs for character voice
+                final_file = os.path.join(self.temp_audio_dir, f"{counter}.{self.audio_format}")
+                self.__speech_to_speech(
+                    initial_file, 
+                    final_file, 
+                    char_voices["elevenlabs"],
+                    char_voices["style"]
+                )
+                
+                # Load and normalize the segment
+                segment = AudioSegment.from_file(final_file, format=self.audio_format)
+                normalized_segment = self.__normalize_audio(segment)
+                
+                # Add small pause between segments
+                pause = AudioSegment.silent(duration=200)  # 200ms pause
+                audio_segments.append(normalized_segment)
+                audio_segments.append(pause)
+                
+                # Clean up temp files
+                os.remove(initial_file)
+                os.remove(final_file)
 
-		except Exception as e:
-			logger.error(f"Error converting text to speech with ElevenLabs: {str(e)}")
-			raise
+            # Add theme music at end if exists
+            if os.path.exists(theme_music_path):
+                audio_segments.append(theme_music)
 
-	def __convert_to_speech_openai(self, text: str, output_file: str) -> None:
-		try:
-			qa_pairs = self.split_qa(text)
-			print(qa_pairs)
-			audio_files = []
-			counter = 0
-			for question, answer in qa_pairs:
-				for speaker, content in [
-					(self.tts_config['openai']['default_voices']['question'], question),
-					(self.tts_config['openai']['default_voices']['answer'], answer)
-				]:
-					counter += 1
-					file_name = f"{self.temp_audio_dir}{counter}.{self.audio_format}"
-					response = openai.audio.speech.create(
-						model=self.tts_config['openai']['model'],
-						voice=speaker,
-						input=content
-					)
-					with open(file_name, "wb") as file:
-						file.write(response.content)
+            # Combine segments with crossfade
+            if audio_segments:
+                final_audio = audio_segments[0]
+                for segment in audio_segments[1:]:
+                    if len(final_audio) > CROSSFADE_DURATION and len(segment) > CROSSFADE_DURATION:
+                        final_audio = final_audio.append(segment, crossfade=CROSSFADE_DURATION)
+                    else:
+                        final_audio = final_audio.append(segment)
 
-					audio_files.append(file_name)
+                # Final normalization and export
+                final_audio = self.__normalize_audio(final_audio)
+                final_audio.export(output_file, format=self.audio_format)
+                logger.info(f"Final audio saved to {output_file}")
+            else:
+                logger.warning("No audio segments to combine")
 
-			# Merge all audio files and save the result
-			self.__merge_audio_files(self.temp_audio_dir, output_file)
+        except Exception as e:
+            logger.error(f"Error converting text to speech: {str(e)}")
+            raise
 
-			# Clean up individual audio files
-			for file in audio_files:
-				os.remove(file)
-			
-			logger.info(f"Audio saved to {output_file}")
+def main():
+    """Test the TextToSpeech class."""
+    try:
+        with open('test_input.txt', 'r', encoding='utf-8') as file:
+            input_text = file.read()
 
-		except Exception as e:
-			logger.error(f"Error converting text to speech with OpenAI: {str(e)}")
-			raise
-	
-	def get_or_create_eventloop():
-		try:
-			return asyncio.get_event_loop()
-		except RuntimeError as ex:
-			if "There is no current event loop in thread" in str(ex):
-				loop = asyncio.new_event_loop()
-				asyncio.set_event_loop(loop)
-				return asyncio.get_event_loop()
+        tts = TextToSpeech(model='openai')
+        tts.convert_to_speech(input_text, 'test_output.mp3')
+        logger.info("Test completed successfully")
 
-	import nest_asyncio  # type: ignore
-	get_or_create_eventloop()
-	nest_asyncio.apply()
-
-	def __convert_to_speech_edge(self, text: str, output_file: str) -> None:
-		"""
-		Convert text to speech using Edge TTS.
-
-		Args:
-			text (str): The input text to convert to speech.
-			output_file (str): The path to save the output audio file.
-		"""
-		try:
-			qa_pairs = self.split_qa(text)
-			audio_files = []
-			counter = 0
-
-			async def edge_tts_conversion(text_chunk: str, output_path: str, voice: str):
-				tts = edge_tts.Communicate(text_chunk, voice)
-				await tts.save(output_path)
-				return
-				
-			async def process_qa_pairs(qa_pairs):
-				nonlocal counter
-				tasks = []
-				for question, answer in qa_pairs:
-					for speaker, content in [
-						(self.tts_config['edge']['default_voices']['question'], question),
-						(self.tts_config['edge']['default_voices']['answer'], answer)
-					]:
-						counter += 1
-						file_name = f"{self.temp_audio_dir}{counter}.{self.audio_format}"
-						tasks.append(asyncio.ensure_future(edge_tts_conversion(content, file_name, speaker)))
-						audio_files.append(file_name)
-
-				await asyncio.gather(*tasks)
-
-			asyncio.run(process_qa_pairs(qa_pairs))
-
-			# Merge all audio files
-			self.__merge_audio_files(self.temp_audio_dir, output_file)
-
-			# Clean up individual audio files
-			for file in audio_files:
-				os.remove(file)
-			logger.info(f"Audio saved to {output_file}")		
-
-		except Exception as e:
-			logger.error(f"Error converting text to speech with Edge: {str(e)}")
-			raise
-
-
-	def split_qa(self, input_text: str) -> List[Tuple[str, str]]:
-		"""
-		Split the input text into question-answer pairs.
-
-		Args:
-			input_text (str): The input text containing Person1 and Person2 dialogues.
-
-		Returns:
-			List[Tuple[str, str]]: A list of tuples containing (Person1, Person2) dialogues.
-		"""
-		# Add ending message to the end of input_text
-		input_text += f"<Person2>{self.ending_message}</Person2>"
-
-		# Regular expression pattern to match Person1 and Person2 dialogues
-		pattern = r'<Person1>(.*?)</Person1>\s*<Person2>(.*?)</Person2>'
-		
-		# Find all matches in the input text
-		matches = re.findall(pattern, input_text, re.DOTALL)
-		
-		# Process the matches to remove extra whitespace and newlines
-		processed_matches = [
-			(
-				' '.join(person1.split()).strip(),
-				' '.join(person2.split()).strip()
-			)
-			for person1, person2 in matches
-		]
-		return processed_matches
-
-	# to be done: Add support for additional tags dynamically given TTS model. Right now it's the intersection of OpenAI/MS Edgeand ElevenLabs supported tags.
-	def clean_tss_markup(self, input_text: str, additional_tags: List[str] = ["Person1", "Person2"]) -> str:
-		"""
-		Remove unsupported TSS markup tags from the input text while preserving supported SSML tags.
-
-		Args:
-			input_text (str): The input text containing TSS markup tags.
-			additional_tags (List[str]): Optional list of additional tags to preserve. Defaults to ["Person1", "Person2"].
-
-		Returns:
-			str: Cleaned text with unsupported TSS markup tags removed.
-		"""
-		# List of SSML tags supported by both OpenAI and ElevenLabs
-		supported_tags = [
-			'speak', 'lang', 'p', 'phoneme',
-			's', 'say-as', 'sub'
-		]
-
-		# Append additional tags to the supported tags list
-		supported_tags.extend(additional_tags)
-
-		# Create a pattern that matches any tag not in the supported list
-		pattern = r'</?(?!(?:' + '|'.join(supported_tags) + r')\b)[^>]+>'
-
-		# Remove unsupported tags
-		cleaned_text = re.sub(pattern, '', input_text)
-
-		# Remove any leftover empty lines
-		cleaned_text = re.sub(r'\n\s*\n', '\n', cleaned_text)
-
-		# Ensure closing tags for additional tags are preserved
-		for tag in additional_tags:
-			cleaned_text = re.sub(f'<{tag}>(.*?)(?=<(?:{"|".join(additional_tags)})>|$)', 
-								  f'<{tag}>\\1</{tag}>', 
-								  cleaned_text, 
-								  flags=re.DOTALL)
-		# Remove '(scratchpad)' from cleaned_text
-		cleaned_text = cleaned_text.replace('(scratchpad)', '')
-
-		return cleaned_text.strip()
-
-def main(seed: int = 42) -> None:
-	"""
-	Main function to test the TextToSpeech class.
-
-	Args:
-		seed (int): Random seed for reproducibility. Defaults to 42.
-	"""
-	try:
-		# Load configuration
-		config = load_config()
-
-		# Read input text from file
-		with open('tests/data/transcript_336aa9f955cd4019bc1287379a5a2820.txt', 'r') as file:
-			input_text = file.read()
-
-		# Test ElevenLabs
-		tts_elevenlabs = TextToSpeech(model='elevenlabs')
-		elevenlabs_output_file = 'tests/data/response_elevenlabs.mp3'
-		tts_elevenlabs.convert_to_speech(input_text, elevenlabs_output_file)
-		logger.info(f"ElevenLabs TTS completed. Output saved to {elevenlabs_output_file}")
-
-		# Test OpenAI
-		tts_openai = TextToSpeech(model='openai')
-		openai_output_file = 'tests/data/response_openai.mp3'
-		tts_openai.convert_to_speech(input_text, openai_output_file)
-		logger.info(f"OpenAI TTS completed. Output saved to {openai_output_file}")
-
-		# Test OpenAI
-		tts_edge = TextToSpeech(model='edge')
-		edge_output_file = 'tests/data/response_edge.mp3'
-		tts_edge.convert_to_speech(input_text, edge_output_file)
-		logger.info(f"Edge TTS completed. Output saved to {edge_output_file}")
-
-	except Exception as e:
-		logger.error(f"An error occurred during text-to-speech conversion: {str(e)}")
-		raise
+    except Exception as e:
+        logger.error(f"Error in main: {str(e)}")
+        raise
 
 if __name__ == "__main__":
-	main(seed=42)
+    main()

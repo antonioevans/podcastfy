@@ -1,0 +1,39 @@
+<Maria>
+*low, echoing piano music fades in* The air hangs heavy in the precinct, thick with cigarette smoke and the weight of unsolved cases. 
+</Maria>
+<DetectiveSarah>
+*eyes narrowed at a map pinned to the board*  Another one vanished near Trinity Church. <break time='0.2s'/>  Just like the others.
+</DetectiveSarah>
+<OfficerMike>
+*shuffling papers nervously*  You know the stories they tell about that place, right Detective? <break time='0.2s'/>  Bad ground.
+</OfficerMike>
+<DetectiveSarah>
+*scoffs, takes a drag from her cigarette*  Spare me the ghost stories, Mike. I need facts. 
+</DetectiveSarah>
+<OfficerMike>
+*clears throat*  Right. But... all the victims, same area, no trace... 
+</OfficerMike>
+<DetectiveSarah>
+*turns sharply, eyes locking with Mike's*  Which is why we're going back to Trinity Church tonight. We'll see what secrets the shadows hold.
+</DetectiveSarah>
+<Maria>
+*music becomes more tense*  Later that night, the desolate streets around the church seem to whisper with unspoken truths.
+</Maria>
+<OfficerMike>
+*whispering, visibly uncomfortable*  You really think we'll find something here?  It's giving me the creeps...
+</OfficerMike>
+<DetectiveSarah>
+*shines her flashlight into the church window*  Keep your eyes peeled, Mike. And your imagination in check. 
+</DetectiveSarah>
+<EmmaLawson> 
+*steps out from the shadows, her voice smooth as silk*  Looking for something, officers? Or perhaps... someone?
+</EmmaLawson>
+<DetectiveSarah>
+*turns, her hand instinctively reaching for her holster* You'd be Emma Lawson. We have some questions for you.
+</DetectiveSarah> 
+<EmmaLawson>
+*a sly smile plays on her lips*  Always happy to oblige the law. But some questions... are best left unanswered. 
+</EmmaLawson> 
+<Maria>
+*music crescendos* In the heart of the city's darkness, a dangerous game of cat and mouse begins. 
+</Maria>

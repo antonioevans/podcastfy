@@ -1,49 +1,8 @@
-.pypirc
-
-specs/
-
-*.whl
-*.wheels
-
-# Exclude aliases file
-alias.sh
-
-local_*.ipynb
-*.ipynb_checkpoints
-
-# Python-specific ignores
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# Virtual environment
-venv/
-env/
-.env
-
-# IDE-specific files
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS-specific files
-.DS_Store
-Thumbs.db
-
-# Project-specific ignores
-attachments/
-
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-
-# Compiled Python files
-*.pyc
-
-# Distribution / packaging
+*.so
 .Python
 build/
 develop-eggs/
@@ -61,63 +20,31 @@ wheels/
 .installed.cfg
 *.egg
 
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-# Environments
-.env
-.venv
-env/
+# Virtual Environment
 venv/
+env/
 ENV/
-env.bak/
-venv.bak/
 
-# Spyder project settings
-.spyderproject
-.spyproject
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# Rope project settings
-.ropeproject
+# Project specific
+data/audio/*
+data/images/*
+data/videos/*
+!data/audio/.gitkeep
+!data/images/.gitkeep
+!data/videos/.gitkeep
 
-# mkdocs documentation
-/site
+# Environment variables
+.env
 
-# mypy
-.mypy_cache/
+# Logs
+*.log
 
-# Poetry
-poetry.lock
-.poetry/
-
-# Poetry
-.venv/
-dist/
-
-# Python
-*.pyc
-__pycache__/
-*.egg-info/
+# System
+.DS_Store
+Thumbs.db

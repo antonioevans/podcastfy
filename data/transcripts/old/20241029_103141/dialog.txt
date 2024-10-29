@@ -1,0 +1,28 @@
+<Maria>
+*whispering, with a sense of foreboding*  The rain hammered the pavement, each drop echoing the growing unease in Detective Sarah's gut. The abandoned church loomed before them, a monolith of shadows and whispers.
+</Maria>
+<DetectiveSarah> 
+*eyes narrowed at the church* Three disappearances, <break time='0.2s'/> all within a three-block radius. <break time='0.2s'/> And every lead brings us back to this cursed building. 
+</DetectiveSarah>
+<OfficerMike> 
+*voice hushed, glancing over his shoulder* You know the stories, Detective. They say people used to… disappear <break time='0.2s'/> even back then. 
+</OfficerMike>
+<DetectiveSarah>
+*turning to Mike, a hint of weariness in her voice*  Spare me the ghost stories, Mike. We deal in facts here, not fairytales. 
+</DetectiveSarah>
+*Emma Lawson steps out of the shadows of the church, her scarlet dress a stark contrast to the grim surroundings.*
+<EmmaLawson> 
+*voice smooth as silk, eyes like ice*  Looking for something, officers? Or perhaps… *someone*?
+</EmmaLawson>
+<OfficerMike>
+*startled, hand hovering near his holster*  Ms. Lawson. We weren't expecting…
+</OfficerMike>
+<DetectiveSarah>
+*eyes fixed on Emma, a silent challenge in their depths* We have a few questions for you down at the station. <break time='0.2s'/>  Questions about the missing persons.
+</DetectiveSarah>
+<EmmaLawson> 
+*a cold smile playing on her lips*  Always happy to help the police, Detective. <break time='0.2s'/> But I’m afraid I haven't seen anything… *unnatural*.
+</EmmaLawson>
+<Maria>
+*voice tight with suspense*  The air crackled with unspoken tension. The detective, the nervous officer, and the enigmatic woman who seemed to exist in the spaces between shadows. One thing was clear: in this city, nothing was ever as it seemed.
+</Maria>

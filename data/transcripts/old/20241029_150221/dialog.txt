@@ -1,0 +1,31 @@
+<Maria>
+*low, smoky tone* The rain hammered the precinct windows, mirroring the relentless rhythm of the case. Another disappearance. Another dead end.
+</Maria>
+<DetectiveSarah>
+*taps a faded photograph*  St. Sebastian's. <break time='0.2s'/> They were all last seen near that damned church.
+</DetectiveSarah>
+<OfficerMike>
+*shuffles nervously*  But Detective, that place... they say it's cursed. <break time='0.2s'/>  Nobody goes near it anymore. 
+</OfficerMike>
+<DetectiveSarah>
+*eyes narrowed, stares at the photo*  Curses don't leave fingerprints, Mike. <break time='0.2s'/>  We need facts, not folklore. 
+</DetectiveSarah>
+<OfficerMike>
+*clears throat*  Right. Of course, Detective. 
+</OfficerMike>
+<Maria>
+*voice hushed* But some shadows hold more than just darkness. They whisper secrets, and in this city, secrets have a way of claiming you. 
+</Maria>
+*sound of a door creaking open* 
+<EmmaLawson>
+*voice smooth, almost bored*  You asked to see me, Detective?  I do hope this isn't about my... affinity for abandoned places.
+</EmmaLawson>
+<DetectiveSarah>
+*leans forward, eyes like steel* We'll get to that, Miss Lawson. You were seen near St. Sebastian's last week. Care to explain?
+</DetectiveSarah>
+<EmmaLawson>
+*a ghost of a smile*  I'm a photographer, Detective. <break time='0.2s'/>  Ruins hold a certain... allure.
+</EmmaLawson>
+<Maria>
+*tone heavy with foreboding* The game of cat and mouse had begun. And in the rain-soaked streets of the city, no one was safe. 
+</Maria>

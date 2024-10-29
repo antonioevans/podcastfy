@@ -1,0 +1,35 @@
+<Maria>
+*A haze of cigarette smoke hangs in the air, the only light emanating from a flickering street lamp outside Detective Sarah's window.*
+</Maria>
+<DetectiveSarah>
+*neutral* These missing persons cases... <break time='0.2s'/> They all lead back to that same damn chicken joint. <break time='0.2s'/> Church's Chicken. <break time='0.2s'/> Doesn't sit right.
+</DetectiveSarah>
+<OfficerMike>
+*neutral* You ever seen a place so busy on a Tuesday night? <break time='0.2s'/>  Place gives me the creeps, Detective. <break time='0.2s'/>  Always has.
+</OfficerMike>
+<DetectiveSarah>
+*neutral* We don't have time for creeps, Mike. <break time='0.2s'/>  We got folks vanishing faster than pigeons in a hurricane. <break time='0.2s'/> Get me the manager's file. <break time='0.2s'/>  Emma Lawson, right?
+</DetectiveSarah>
+<OfficerMike>
+*shuffling papers nervously* 
+*neutral* Yeah, uh, here. <break time='0.2s'/>  Rumor has it, that place is a front. <break time='0.2s'/>  Colombian cartel, whispers say. <break time='0.2s'/>  Moving that new poison, that...crack cocaine.
+</OfficerMike>
+<DetectiveSarah>
+*neutral* Rumors won't find these people, Mike. <break time='0.2s'/>  Facts will. <break time='0.2s'/> And right now, the only fact is, Emma Lawson runs that chicken shack. Bring her in. 
+</DetectiveSarah>
+<EmmaLawson> 
+*leaning back in the chair, her red lipstick a stark contrast to her pale skin*
+*neutral* You got questions, Detective?  <break time='0.2s'/>  I'm just trying to run a business. <break time='0.2s'/> People love my chicken.
+</EmmaLawson>
+<DetectiveSarah>
+*neutral* People got a funny way of disappearing after they visit your establishment, Ms. Lawson. <break time='0.2s'/>  You familiar with that?
+</DetectiveSarah>
+<EmmaLawson>
+*neutral* This is Queens, Detective. <break time='0.2s'/>  People disappear every day. <break time='0.2s'/> You think I keep tabs on everyone who eats my chicken?
+</EmmaLawson>
+<DetectiveSarah>
+*neutral* I think you know more than you're letting on. 
+</DetectiveSarah>
+<Maria>
+*The tension in the room is as thick as the greasy air wafting from a nearby paper bag, the scent of fried chicken masking something far more sinister.* 
+</Maria>

@@ -1,0 +1,28 @@
+<Maria>
+*low, suspenseful tone* The air hung heavy with the weight of unanswered questions, the city's grimy streets echoing with whispers of the missing. 
+</Maria>
+<DetectiveSarah>
+*tapping a file on her desk* Three disappearances in a month. All within a block of that old church. <break time='0.2s'/> Coincidence? I don't believe in coincidence. 
+</DetectiveSarah>
+<OfficerMike>
+*fidgeting with his hat* But Detective, that place... they say it's cursed. People talk about strange lights, chanting...<break time='0.2s'/>  
+</OfficerMike>
+<DetectiveSarah>
+*fixing him with a sharp look* I'm interested in facts, Officer, not ghost stories. <break time='0.2s'/>  Get me everything we have on the church and anyone connected to it. 
+</DetectiveSarah>
+<OfficerMike>
+*gulping*  R-right away, Detective. 
+</OfficerMike>
+*sound of a door creaking open*
+<EmmaLawson>
+*voice smooth as silk*  I couldn't help but overhear. A church, you say?  Such a shame, what's become of that old place. 
+</EmmaLawson>
+<DetectiveSarah>
+*eyes narrowing* And you are...?
+</DetectiveSarah>
+<EmmaLawson>
+*a faint smile playing on her lips* Emma Lawson. I used to live across the street. That church... it holds many memories.
+</EmmaLawson>
+<Maria>
+*voice thick with intrigue*  The detective had a feeling this encounter was more than just happenstance. The shadows held their breath, waiting for the next move in this deadly game.
+</Maria>

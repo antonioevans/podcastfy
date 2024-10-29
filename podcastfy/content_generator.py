@@ -1,26 +1,26 @@
-"""
-Content Generator Module
-
-This module is responsible for generating Q&A content based on input texts using
-LangChain and various LLM backends. It handles the interaction with the AI model and
-provides methods to generate and save the generated content.
-"""
+"""Content Generator Module"""
 
 import os
 from typing import Optional, Dict, Any, List
-
+from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.llms.llamafile import Llamafile
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_core.output_parsers import StrOutputParser
-from langchain import hub
 from podcastfy.utils.config_conversation import load_conversation_config
 from podcastfy.utils.config import load_config
+from podcastfy.utils.prompt_handler import PromptHandler, load_custom_prompt
 import logging
-from langchain.prompts import HumanMessagePromptTemplate
+import re
 
 logger = logging.getLogger(__name__)
 
+# Load .env from project root
+env_path = os.path.join('C:\\', 'appz', 'podcastfy', '.env')
+load_dotenv(env_path)
+
+# Valid speaker tags
+VALID_SPEAKERS = {"DetectiveSarah", "OfficerMike", "EmmaLawson", "Maria"}
 
 class LLMBackend:
     def __init__(
@@ -30,20 +30,11 @@ class LLMBackend:
         max_output_tokens: int,
         model_name: str,
     ):
-        """
-        Initialize the LLMBackend.
-
-        Args:
-                is_local (bool): Whether to use a local LLM or not.
-                temperature (float): The temperature for text generation.
-                max_output_tokens (int): The maximum number of output tokens.
-                model_name (str): The name of the model to use.
-        """
+        """Initialize the LLMBackend."""
         self.is_local = is_local
         self.temperature = temperature
         self.max_output_tokens = max_output_tokens
         self.model_name = model_name
-        self.is_multimodal = not is_local  # Does not assume local LLM is multimodal
 
         if is_local:
             self.llm = Llamafile()
@@ -52,193 +43,180 @@ class LLMBackend:
                 model=model_name,
                 temperature=temperature,
                 max_output_tokens=max_output_tokens,
+                google_api_key=os.getenv('GEMINI_API_KEY')
             )
-
 
 class ContentGenerator:
     def __init__(
-        self, api_key: str, conversation_config: Optional[Dict[str, Any]] = None
+        self, api_key: str, conversation_config: Optional[Dict[str, Any]] = None,
+        custom_prompt_path: Optional[str] = None
     ):
-        """
-        Initialize the ContentGenerator.
-
-        Args:
-                api_key (str): API key for Google's Generative AI.
-                conversation_config (Optional[Dict[str, Any]]): Custom conversation configuration.
-        """
-        os.environ["GOOGLE_API_KEY"] = api_key
+        """Initialize the ContentGenerator."""
+        self.api_key = api_key or os.getenv('GEMINI_API_KEY')
+        if not self.api_key:
+            raise ValueError("GEMINI_API_KEY not found in environment variables or constructor")
+            
+        os.environ["GOOGLE_API_KEY"] = self.api_key
         self.config = load_config()
         self.content_generator_config = self.config.get("content_generator", {})
+        
+        logger.debug("Loading conversation config")
+        self.config_conversation = load_conversation_config()
+        if conversation_config:
+            logger.debug(f"Updating with provided config: {conversation_config}")
+            self.config_conversation.configure(conversation_config)
 
-        self.config_conversation = load_conversation_config(conversation_config)
+        # Load base prompt
+        self.base_prompt_path = os.path.join('C:\\', 'appz', 'podcastfy', 'data', 'prompts', 'prompt_v1.txt')
+        if not os.path.exists(self.base_prompt_path):
+            raise FileNotFoundError(f"Base prompt file not found at {self.base_prompt_path}")
+            
+        with open(self.base_prompt_path, 'r', encoding='utf-8') as f:
+            self.base_prompt = f.read()
+        logger.debug("Loaded base prompt")
 
-    def __compose_prompt(self, num_images: int):
-        """
-        Compose the prompt for the LLM based on the content list.
-        """
-        prompt_template = hub.pull(
-            self.config.get("content_generator", {}).get(
-                "prompt_template", "souzatharsis/podcastfy_multimodal"
-            )
-        )
-
-        image_path_keys = []
-        messages = []
-        text_content = {"type": "text", "text": "{input_text}"}
-        messages.append(text_content)
-        for i in range(num_images):
-            key = f"image_path_{i}"
-            image_content = {
-                "image_url": {"path": f"{{{key}}}", "detail": "high"},
-                "type": "image_url",
-            }
-            image_path_keys.append(key)
-            messages.append(image_content)
-
-        user_prompt_template = ChatPromptTemplate.from_messages(
-            messages=[HumanMessagePromptTemplate.from_template(messages)]
-        )
-
-        # Compose messages from podcastfy_prompt_template and user_prompt_template
-        combined_messages = prompt_template.messages + user_prompt_template.messages
-
-        # Create a new ChatPromptTemplate object with the combined messages
-        composed_prompt_template = ChatPromptTemplate.from_messages(combined_messages)
-
-        return composed_prompt_template, image_path_keys
-
-    def __compose_prompt_params(
-        self, image_file_paths: List[str], image_path_keys: List[str], input_texts: str
-    ):
-        prompt_params = {
-            "input_text": input_texts,
-            "word_count": self.config_conversation.get("word_count"),
-            "conversation_style": ", ".join(
-                self.config_conversation.get("conversation_style", [])
-            ),
-            "roles_person1": self.config_conversation.get("roles_person1"),
-            "roles_person2": self.config_conversation.get("roles_person2"),
-            "dialogue_structure": ", ".join(
-                self.config_conversation.get("dialogue_structure", [])
-            ),
-            "podcast_name": self.config_conversation.get("podcast_name"),
-            "podcast_tagline": self.config_conversation.get("podcast_tagline"),
-            "output_language": self.config_conversation.get("output_language"),
-            "engagement_techniques": ", ".join(
-                self.config_conversation.get("engagement_techniques", [])
-            ),
-        }
-
-        # for each image_path_key, add the corresponding image_file_path to the prompt_params
-        for key, path in zip(image_path_keys, image_file_paths):
-            prompt_params[key] = path
-
-        return prompt_params
+    def validate_dialog(self, text: str) -> str:
+        """Validate and clean dialog content."""
+        try:
+            # Find all speaker tags
+            pattern = r'<(\w+)>'
+            speakers = set(re.findall(pattern, text))
+            
+            # Check for invalid speakers
+            invalid_speakers = speakers - VALID_SPEAKERS
+            if invalid_speakers:
+                logger.warning(f"Found invalid speakers: {invalid_speakers}")
+                # Remove any structural tags completely
+                for invalid in invalid_speakers:
+                    text = re.sub(f'<{invalid}>.*?</{invalid}>', '', text, flags=re.DOTALL)
+                # Clean up extra newlines
+                text = re.sub(r'\n\s*\n', '\n', text)
+            
+            # Ensure all required speakers are present
+            missing_speakers = VALID_SPEAKERS - speakers
+            if missing_speakers:
+                logger.warning(f"Missing required speakers: {missing_speakers}")
+                # Add default lines for missing speakers
+                for speaker in missing_speakers:
+                    if speaker == "Maria":
+                        text = f"<Maria>\n*professional tone* The investigation continues.\n</Maria>\n\n{text}"
+                    elif speaker == "DetectiveSarah":
+                        text += f"\n\n<DetectiveSarah>\n*determined* We'll get to the bottom of this.\n</DetectiveSarah>"
+                    elif speaker == "OfficerMike":
+                        text += f"\n\n<OfficerMike>\n*supportive* I'll check the records right away.\n</OfficerMike>"
+                    elif speaker == "EmmaLawson":
+                        text += f"\n\n<EmmaLawson>\n*cryptic* Some mysteries are better left unsolved.\n</EmmaLawson>"
+            
+            # Ensure proper XML structure
+            lines = text.split('\n')
+            current_tag = None
+            fixed_lines = []
+            
+            for line in lines:
+                if line.strip():
+                    # Check for opening tag
+                    open_match = re.match(r'<(\w+)>', line)
+                    if open_match:
+                        if current_tag:  # Close any open tag
+                            fixed_lines.append(f"</{current_tag}>")
+                        current_tag = open_match.group(1)
+                        fixed_lines.append(line)
+                    # Check for closing tag
+                    elif re.match(f'</({"|".join(VALID_SPEAKERS)})>', line):
+                        current_tag = None
+                        fixed_lines.append(line)
+                    # Content line
+                    else:
+                        if current_tag and not line.startswith('*'):
+                            line = f"*neutral* {line}"
+                        fixed_lines.append(line)
+            
+            # Close any remaining open tag
+            if current_tag:
+                fixed_lines.append(f"</{current_tag}>")
+            
+            return '\n'.join(fixed_lines).strip()
+        except Exception as e:
+            logger.error(f"Error validating dialog: {str(e)}")
+            raise
 
     def generate_qa_content(
         self,
         input_texts: str = "",
-        image_file_paths: List[str] = [],
+        image_file_paths: List[str] = None,
         output_filepath: Optional[str] = None,
         is_local: bool = False,
     ) -> str:
-        """
-        Generate Q&A content based on input texts.
-
-        Args:
-                input_texts (str): Input texts to generate content from.
-                image_file_paths (List[str]): List of image file paths.
-                output_filepath (Optional[str]): Filepath to save the response content. Defaults to None.
-                is_local (bool): Whether to use a local LLM or not. Defaults to False.
-
-        Returns:
-                str: Formatted Q&A content.
-
-        Raises:
-                Exception: If there's an error in generating content.
-        """
+        """Generate dialog content based on input text."""
         try:
+            logger.debug("Starting content generation")
+            if image_file_paths is None:
+                image_file_paths = []
+                
             llmbackend = LLMBackend(
                 is_local=is_local,
-                temperature=self.config_conversation.get("creativity", 0),
-                max_output_tokens=self.content_generator_config.get(
-                    "max_output_tokens", 8192
-                ),
-                model_name=(
-                    self.content_generator_config.get(
-                        "gemini_model", "gemini-1.5-pro-latest"
-                    )
-                    if not is_local
-                    else "User provided model"
-                ),
+                temperature=0.7,
+                max_output_tokens=8192,
+                model_name="gemini-1.5-pro-latest"
             )
 
-            num_images = 0 if is_local else len(image_file_paths)
-            self.prompt_template, image_path_keys = self.__compose_prompt(num_images)
-            self.parser = StrOutputParser()
-            self.chain = self.prompt_template | llmbackend.llm | self.parser
+            # Format prompt with input text
+            dialog_prompt = f"{self.base_prompt}\n\nStory to adapt:\n{input_texts}"
 
-            prompt_params = self.__compose_prompt_params(
-                image_file_paths, image_path_keys, input_texts
-            )
+            # Generate dialog
+            messages = [
+                SystemMessage(content="""You are a noir dialog writer creating character interactions.
+CRITICAL: Use ONLY these tags: <DetectiveSarah>, <OfficerMike>, <EmmaLawson>, <Maria>
+Start IMMEDIATELY with character dialog - NO structural tags or metadata.
+Each character must speak at least twice.
+Total dialog should be 3-5 minutes when spoken."""),
+                HumanMessage(content=dialog_prompt)
+            ]
 
-            self.response = self.chain.invoke(prompt_params)
-
-            logger.info(f"Content generated successfully")
+            logger.debug("Generating dialog")
+            response = llmbackend.llm.invoke(messages)
+            
+            # Validate and clean dialog
+            result = self.validate_dialog(response.content)
+            
+            logger.info("Content generated successfully")
 
             if output_filepath:
-                with open(output_filepath, "w") as file:
-                    file.write(self.response)
+                logger.debug(f"Saving content to {output_filepath}")
+                with open(output_filepath, "w", encoding='utf-8') as file:
+                    file.write(result)
                 logger.info(f"Response content saved to {output_filepath}")
 
-            return self.response
+            return result
         except Exception as e:
             logger.error(f"Error generating content: {str(e)}")
             raise
 
-
 def main(seed: int = 42, is_local: bool = False) -> None:
-    """
-    Generate Q&A content based on input text from input_text.txt using the specified LLM backend.
-
-    Args:
-            seed (int): Random seed for reproducibility. Defaults to 42.
-            is_local (bool): Whether to use a local LLM or not. Defaults to False.
-
-    Returns:
-            None
-    """
+    """Main function to test the ContentGenerator."""
     try:
+        env_path = os.path.join('C:\\', 'appz', 'podcastfy', '.env')
+        load_dotenv(env_path)
+        
         config = load_config()
-        api_key = config.GEMINI_API_KEY if not is_local else ""
-        if not is_local and not api_key:
-            raise ValueError("GEMINI_API_KEY not found in configuration")
+        api_key = os.getenv('GEMINI_API_KEY')
+        if not api_key and not is_local:
+            raise ValueError("GEMINI_API_KEY not found in environment variables")
 
-        content_generator = ContentGenerator(api_key)
+        content_generator = ContentGenerator(api_key=api_key)
 
-        input_text = ""
-        transcript_dir = config.get("output_directories", {}).get(
-            "transcripts", "data/transcripts"
-        )
-        for filename in os.listdir(transcript_dir):
-            if filename.endswith(".txt"):
-                with open(os.path.join(transcript_dir, filename), "r") as file:
-                    input_text += file.read() + "\n\n"
-
+        input_text = "A detective investigates a series of mysterious disappearances"
         response = content_generator.generate_qa_content(input_text, is_local=is_local)
 
-        print("Generated Q&A Content:")
-        output_file = os.path.join(
-            config.get("output_directories", {}).get("transcripts", "data/transcripts"),
-            "response.txt",
-        )
-        with open(output_file, "w") as file:
+        print("Generated Content:")
+        output_file = os.path.join('C:\\', 'appz', 'podcastfy', 'data', 'transcripts', 'response.txt')
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        with open(output_file, "w", encoding='utf-8') as file:
             file.write(response)
 
     except Exception as e:
-        logger.error(f"An error occurred while generating Q&A content: {str(e)}")
+        logger.error(f"An error occurred while generating content: {str(e)}")
         raise
-
 
 if __name__ == "__main__":
     main()

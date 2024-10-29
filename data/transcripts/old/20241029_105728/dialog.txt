@@ -1,0 +1,39 @@
+<Maria>
+*The air crackled with tension. Rain lashed against the windows of Detective Sarah's sparsely lit office.*
+</Maria>
+<DetectiveSarah> 
+*neutral* <break time='0.2s'/>Three disappearances. <break time='0.2s'/> All within a five-block radius. <break time='0.2s'/> All last seen near Trinity Church. <break time='0.2s'/> Coincidence? <break time='0.2s'/> I don't believe in coincidences, Mike.
+</DetectiveSarah>
+<OfficerMike>
+*neutral* <break time='0.2s'/> But Detective, that place… they say…
+</OfficerMike>
+<DetectiveSarah>
+*neutral* <break time='0.2s'/> "They say" what, Mike?  Spit it out.
+</DetectiveSarah>
+<OfficerMike> 
+*neutral* <break time='0.2s'/> They say it's haunted. That people who go in never come out. 
+</OfficerMike>
+<DetectiveSarah>
+*Scoffs*
+*neutral* <break time='0.2s'/> Ghost stories won’t solve this case, Mike. We need facts. Hard evidence.
+</DetectiveSarah>
+<Maria>
+*A knock on the door. Officer Mike brings in a woman, her face half-hidden in the shadows of a wide-brimmed hat.* 
+</Maria>
+<OfficerMike>
+*neutral* Detective, this is Emma Lawson. She claims she has information about the missing persons. 
+</OfficerMike>
+<EmmaLawson>
+*Her voice is low and husky* 
+*neutral* Information you won't find in any police report. 
+</EmmaLawson>
+<DetectiveSarah>
+*Eyes Emma with suspicion*
+*neutral* <break time='0.2s'/>And what kind of information would that be, Ms. Lawson?
+</DetectiveSarah>
+<EmmaLawson>
+*neutral* Let's just say... Trinity Church has its secrets. Secrets some would kill to protect.
+</EmmaLawson>
+<Maria>
+*A chill settled in the air, the unspoken threat hanging heavy between them. The detective leaned forward, a glint in her eye. This case just got interesting.* 
+</Maria>

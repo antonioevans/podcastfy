@@ -1,0 +1,28 @@
+run = "uvicorn podcastfy.webhook_handler:app --host 0.0.0.0 --port 8000"
+language = "python3"
+
+[nix]
+channel = "stable-22_11"
+
+[env]
+PYTHONPATH = "/home/runner/${REPL_SLUG}"
+PATH = "/home/runner/${REPL_SLUG}/.local/bin"
+
+[packager]
+language = "python3"
+ignoredPackages = ["node_modules"]
+
+[packager.features]
+packageSearch = true
+guessImports = true
+
+[languages.python3]
+pattern = "**/*.py"
+syntax = "python"
+
+[languages.python3.languageServer]
+start = ["pylsp"]
+
+[deployment]
+run = ["sh", "-c", "uvicorn podcastfy.webhook_handler:app --host 0.0.0.0 --port 8000"]
+deploymentTarget = "cloudrun"

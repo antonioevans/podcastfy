@@ -1,0 +1,33 @@
+<Maria>
+*low, smoky tone* The air hung heavy with the scent of rain and regret, another night falling on the concrete labyrinth of New York City. 
+</Maria>
+<DetectiveSarah>
+*tapping a faded photograph* They vanished right here. <break time='0.2s'/>  Like ghosts in the fog. 
+</DetectiveSarah>
+<OfficerMike>
+*shivering slightly*  Right by that old church, Detective. You know the stories they tell about that place? <break time='0.2s'/>  Some say it's cursed.
+</OfficerMike>
+<DetectiveSarah>
+*scoffs* Cursed by bad luck, maybe. <break time='0.2s'/> Or worse. <break time='0.2s'/> Get me everything we have on anyone who's even breathed near that church in the past year. 
+</DetectiveSarah>
+<OfficerMike>
+*fumbling with his notepad* Right away, Detective. <break time='0.2s'/> But... what if it's something we can't explain? 
+</OfficerMike>
+<DetectiveSarah>
+*eyes narrowed*  Explanations are for priests and philosophers, Mike. <break time='0.2s'/> We deal in facts. <break time='0.2s'/> And right now, the only fact is people are disappearing. 
+</DetectiveSarah>
+<Maria>
+*voice hushed* Days bled into nights, the investigation a tangled web of dead ends and whispered rumors. 
+</Maria>
+<EmmaLawson>
+*sitting in a shadowed interrogation room, a sly smile playing on her lips* You're looking for answers in the shadows, Detective. <break time='0.2s'/>  But some secrets... some secrets prefer to stay hidden.
+</EmmaLawson>
+<DetectiveSarah>
+*leaning forward, eyes locked on Emma*  And you seem to know a lot about secrets, Miss Lawson. <break time='0.2s'/>  Maybe it's time you shared some of yours.
+</DetectiveSarah>
+<EmmaLawson>
+*her smile fading*  Everyone in this city has something to hide, Detective. <break time='0.2s'/> Even you. 
+</EmmaLawson> 
+<Maria>
+*voice a chilling whisper* The game of cat and mouse was on, played in the flickering gaslight of a city that never sleeps, where every shadow holds a secret and every corner could hide a sin.
+</Maria>

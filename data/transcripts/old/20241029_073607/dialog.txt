@@ -1,0 +1,31 @@
+<Maria>
+*voice laced with intrigue* The air hung heavy in the precinct, thick with cigarette smoke and the weight of unsolved cases.
+</Maria>
+<DetectiveSarah>
+*eyes narrowed at a map dotted with red pushpins*  Five disappearances in a month. <break time='0.2s'/> All within a block of that damned church. 
+</DetectiveSarah>
+<OfficerMike>
+*fidgeting with his notepad* You really think it's haunted, Detective?  <break time='0.2s'/>  Those old stories... maybe they're true.
+</OfficerMike>
+<DetectiveSarah>
+*scoffs* Ghosts don't leave tire tracks, Mike. <break time='0.2s'/> We're dealing with something far more earthly. <break time='0.2s'/> And find out who rented that black sedan last Tuesday. It's circling our drainpipe. 
+</DetectiveSarah>
+<OfficerMike>
+*scribbling frantically* Right away, Detective.
+</OfficerMike>
+<Maria>
+*voice hushed* But sometimes, even in the stark reality of a detective's world, shadows held their own truths. 
+</Maria>
+*door creaks open, footsteps echo*
+<EmmaLawson>
+*voice cool and composed*  Detective Sarah, I presume? I believe I have information regarding your missing persons case.
+</EmmaLawson>
+<DetectiveSarah>
+*eyes narrowed suspiciously*  And you are...? 
+</DetectiveSarah>
+<EmmaLawson>
+*a ghost of a smile plays on her lips*  Let's just say, I'm familiar with the secrets those walls hold. 
+</EmmaLawson>
+<Maria>
+*intrigued tone*  As the mysterious woman stepped into the light, Detective Sarah knew this case had just taken a sharp turn into the unknown. 
+</Maria>

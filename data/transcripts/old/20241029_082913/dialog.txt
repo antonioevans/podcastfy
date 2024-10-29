@@ -1,0 +1,34 @@
+<Maria>
+*a smoky jazz melody fades in, punctuated by the clatter of typewriter keys* Another night falls on the city that never sleeps, but for some, the waking world has become a distant memory.
+</Maria>
+<DetectiveSarah>
+*eyes fixed on a faded photograph*  Another missing person report. <break time='0.2s'/> Same MO, same proximity to that damned church.
+</DetectiveSarah>
+<OfficerMike>
+*fidgeting with his hat* You really think it's haunted, Detective? <break time='0.2s'/> The old folks say nobody comes back from there the same. 
+</OfficerMike>
+<DetectiveSarah>
+*a humorless chuckle escapes her lips* Ghosts I can handle, Mike. It's the living that keep me up at night. <break time='0.2s'/> Get me everything we have on the church and anyone connected to it.
+</DetectiveSarah>
+<OfficerMike>
+*rushing to comply* Right away, Detective.
+</OfficerMike>
+*The scene shifts to a dimly lit speakeasy, smoke curling from a cigarette held in a gloved hand*
+<Maria>
+*neutral* The name on everyone's lips, whispered in hushed tones, belonged to Emma Lawson.
+</Maria>
+<EmmaLawson>
+*taking a long drag, her eyes reflecting the city lights*  These souls lost their way, Detective. They sought solace in the shadows.
+</EmmaLawson>
+<DetectiveSarah>
+*leaning forward, her gaze unwavering* And did they find it, Ms. Lawson? Or did you offer them something else?
+</DetectiveSarah>
+<EmmaLawson>
+*a ghost of a smile plays on her lips*  The church holds many secrets, Detective. Some are better left buried.
+</EmmaLawson>
+<DetectiveSarah>
+*standing, her silhouette framed against the city's neon glow*  Not on my watch.
+</DetectiveSarah>
+<Maria>
+*neutral* As the night deepened, so did the mystery. Detective Sarah, caught in a web of whispers and shadows, knew the truth lay somewhere within the heart of the abandoned church. But some doors, once opened, can never be closed.
+</Maria>

@@ -1,0 +1,53 @@
+[
+  {
+    "start_time": 0,
+    "duration": 10,
+    "location": "Detective's Office",
+    "tone": "Noir, mysterious",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Rain-streaked windows",
+      "Desk lamp casting shadows",
+      "Case files scattered"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 10,
+    "duration": 10,
+    "location": "Rain-Soaked Alley",
+    "tone": "Dark and foreboding",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Neon signs reflecting in puddles",
+      "Steam rising from vents",
+      "Fire escape shadows"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  },
+  {
+    "start_time": 20,
+    "duration": 10,
+    "location": "Dimly Lit Bar",
+    "tone": "Smoky and tense",
+    "characters": [
+      "DetectiveSarah",
+      "OfficerMike"
+    ],
+    "key_elements": [
+      "Half-empty glasses",
+      "Ceiling fan shadows",
+      "Vintage jukebox"
+    ],
+    "transitions": "Slow fade to next scene",
+    "shots": 3
+  }
+]

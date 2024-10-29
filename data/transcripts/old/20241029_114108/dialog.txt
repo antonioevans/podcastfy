@@ -1,0 +1,30 @@
+<Maria>
+*a smoky jazz track plays softly in the background*  The air in Detective Sarah's office was thick, heavy with the weight of unsolved cases and the lingering scent of cheap coffee. 
+</Maria>
+<DetectiveSarah>
+*eyes narrowed at a map pinned with red string*  Another one vanished right here. <break time='0.2s'/> Same area, same time of night. There's a pattern, Mike, I can feel it in my gut.
+</DetectiveSarah>
+<OfficerMike>
+*fidgeting with his notepad*  Right by that old church, Detective. You know, folks around here say it's cursed. <break time='0.2s'/> Bad ground.
+</OfficerMike>
+<DetectiveSarah>
+*scoffs*  Cursed? I'm more worried about someone who knows these streets like the back of their hand, someone who can disappear like a ghost.
+</DetectiveSarah>
+<Maria>
+*music fades slightly*  Just then, a woman entered. Emma Lawson, a name whispered in connection with the disappearances, a woman who moved with an unsettling grace.
+</Maria>
+<EmmaLawson> 
+*a cool smile playing on her lips*  Detective Sarah, I presume. I hear you're looking for answers. <break time='0.2s'/> Perhaps I can be of assistance. 
+</EmmaLawson>
+<OfficerMike>
+*eyes widening*  Ms. Lawson, you're a person of interest in this investigation. 
+</OfficerMike>
+<EmmaLawson>
+*raising a perfectly manicured eyebrow*  Interested? Of course, I am. These disappearances are rather... unsettling, wouldn't you say?
+</EmmaLawson>
+<DetectiveSarah>
+*leaning back in her chair, studying Emma intently*  That's what I'm counting on. <break time='0.2s'/> Sit down, Ms. Lawson. Let's talk about what you know about unsettling.
+</DetectiveSarah>
+<Maria>
+*music swells*  The game of cat and mouse had begun, and in this city, the shadows themselves seemed to hold their breath, waiting to see who would blink first. 
+</Maria>

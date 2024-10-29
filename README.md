@@ -1,163 +1,346 @@
-<a name="readme-top"></a>
+# Podcastfy 🎙️
 
-# Podcastfy.ai 🎙️🤖
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/souzatharsis/podcastfy/blob/main/podcastfy.ipynb)
-[![PyPi Status](https://img.shields.io/pypi/v/podcastfy)](https://pypi.org/project/podcastfy/)
-[![Downloads](https://pepy.tech/badge/podcastfy)](https://pepy.tech/project/podcastfy)
-[![Issues](https://img.shields.io/github/issues-raw/souzatharsis/podcastfy)](https://github.com/souzatharsis/podcastfy/issues)
-[![Pytest](https://github.com/souzatharsis/podcastfy/actions/workflows/python-app.yml/badge.svg)](https://github.com/souzatharsis/podcastfy/actions/workflows/python-app.yml)
-[![Documentation Status](https://readthedocs.org/projects/podcastfy/badge/?version=latest)](https://podcastfy.readthedocs.io/en/latest/?badge=latest)
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-![GitHub Repo stars](https://img.shields.io/github/stars/souzatharsis/podcastfy)
+A sophisticated system for generating noir-style video podcasts with AI-driven content, visuals, and audio.
 
+## Technical Architecture 🏗️
 
-An Open Source alternative to NotebookLM's podcast feature: Transforming Multimodal Content into Captivating Multilingual Audio Conversations with GenAI
+### System Overview
+Podcastfy uses a sophisticated pipeline to transform text prompts into complete video podcasts:
 
-https://github.com/user-attachments/assets/f1559e70-9cf9-4576-b48b-87e7dad1dd0b
+1. **Content Generation Layer**
+   - Uses Gemini Pro for initial dialog generation
+   - Enforces strict character roles and dialog structure
+   - Characters:
+     * DetectiveSarah (Lead investigator)
+     * OfficerMike (Supporting officer)
+     * EmmaLawson (Person of interest)
+     * Maria (Professional narrator)
+   - Maintains proper XML tagging and scene directions
 
-Podcastfy is an open-source Python package that transforms multi-modal content (text, images) into engaging, multi-lingual audio conversations using GenAI. Input content include websites, PDFs, youtube videos as well as images.
+2. **Scene Analysis Engine**
+   - Parallel processing with dedicated Gemini instances per scene
+   - Configurable scene structure:
+     * Number of scenes (1-20)
+     * Scene duration (1-60 seconds)
+     * Shots per scene (1-12)
+   - Automatic title card generation
+   - Tracks:
+     * Location changes
+     * Emotional shifts
+     * Character interactions
+     * Scene transitions
+   - Creates cinematic flow and pacing
 
-Unlike UI-based tools focused primarily on note-taking or research synthesis (e.g. NotebookLM ❤️), Podcastfy focuses on the programmatic and bespoke generation of engaging, conversational transcripts and audio from a multitude of multi-modal sources enabling customization and scale.
+3. **Audio Processing Pipeline**
+   - Initial speech generation with OpenAI TTS
+   - Character voice enhancement through ElevenLabs
+   - Voice assignments:
+     * DetectiveSarah: pBZVCk298iJlHAcHQwLr (Deep, authoritative)
+     * OfficerMike: JVmMgKJbp4ER2bqrITpV (Young, energetic)
+     * EmmaLawson: 9xDZ0uWK4h0mYOKCXBnw (Cold, detached)
+     * Maria: IvUzQuODMwxmPUiKQ7DJ (Professional narrator)
+   - Audio normalization and crossfading
 
-[![Star History Chart](https://api.star-history.com/svg?repos=souzatharsis/podcastfy&type=Date&theme=dark)](https://api.star-history.com/svg?repos=souzatharsis/podcastfy&type=Date&theme=dark)
+4. **Visual Generation System**
+   - Scene visualization using parallel Gemini Pro instances
+   - Image generation through Flux API
+   - Configurable shots per scene
+   - Automatic title card generation between scenes
+   - Noir-style visual consistency
 
-## Audio Examples 🔊
-This sample collection is also [available at audio.com](https://audio.com/thatupiso/collections/podcastfy).
+5. **Video Composition**
+   - Synchronized audio-visual alignment
+   - Scene-based image timing
+   - Title cards between scenes (2s duration)
+   - Smooth transitions with configurable timing
+   - Professional output formatting
 
-### Images
+### Directory Structure
+```
+podcastfy/
+├── data/
+│   ├── audio/      # Generated audio files
+│   ├── images/     # Generated scene images
+│   ├── prompts/    # System prompts
+│   └── videos/     # Final output videos
+├── podcastfy/
+│   ├── utils/
+│   │   ├── config.py
+│   │   ├── image_generator.py
+│   │   ├── prompt_handler.py
+│   │   └── video_generator.py
+│   ├── content_generator.py
+│   ├── text_to_speech.py
+│   └── webhook_handler.py
+└── tests/
+```
 
-| Image Set | Description | Audio |
-|:--|:--|:--|
-| <img src="data/images/Senecio.jpeg" alt="Senecio, 1922 (Paul Klee)" width="20%" height="auto"> <img src="data/images/connection.jpg" alt="Connection of Civilizations (2017) by Gheorghe Virtosu " width="21.5%" height="auto"> | Senecio, 1922 (Paul Klee) and Connection of Civilizations (2017) by Gheorghe Virtosu  | [<span style="font-size: 25px;">🔊</span>](https://audio.com/thatupiso/audio/output-file-abstract-art) |
-| <img src="data/images/japan_1.jpg" alt="The Great Wave off Kanagawa, 1831 (Hokusai)" width="20%" height="auto"> <img src="data/images/japan2.jpg" alt="Takiyasha the Witch and the Skeleton Spectre, c. 1844 (Kuniyoshi)" width="21.5%" height="auto"> | The Great Wave off Kanagawa, 1831 (Hokusai) and Takiyasha the Witch and the Skeleton Spectre, c. 1844 (Kuniyoshi) | [<span style="font-size: 25px;">🔊</span>](https://audio.com/thatupiso/audio/output-file-japan) |
-| <img src="data/images/taylor.png" alt="Taylor Swift" width="28%" height="auto"> <img src="data/images/monalisa.jpeg" alt="Mona Lisa" width="10.5%" height="auto"> | Pop culture icon Taylor Swift and Mona Lisa, 1503 (Leonardo da Vinci) | [<span style="font-size: 25px;">🔊</span>](https://audio.com/thatupiso/audio/taylor-monalisa) |
+## API Usage 🚀
 
-### Text
-| Content Type | Description | Audio | Source |
-|--------------|-------------|-------|--------|
-| Youtube Video | YCombinator on LLMs | [Audio](https://audio.com/thatupiso/audio/ycombinator-llms) | [YouTube](https://www.youtube.com/watch?v=eBVi_sLaYsc) |
-| PDF | Book: Networks, Crowds, and Markets | [Audio](https://audio.com/thatupiso/audio/networks) | book pdf |
-| Research Paper | Climate Change in France | [Audio](https://audio.com/thatupiso/audio/agro-paper) | [PDF](./data/pdf/s41598-024-58826-w.pdf) |
-| Website | My Personal Website | [Audio](https://audio.com/thatupiso/audio/tharsis) | [Website](https://www.souzatharsis.com) |
-| Website + YouTube | My Personal Website + YouTube Video on AI | [Audio](https://audio.com/thatupiso/audio/tharsis-ai) | [Website](https://www.souzatharsis.com), [YouTube](https://www.youtube.com/watch?v=sJE1dE2dulg) |
-
-### Multi-Lingual Text
-| Language | Content Type | Description | Audio | Source |
-|----------|--------------|-------------|-------|--------|
-| French | Website | Agroclimate research information | [Audio](https://audio.com/thatupiso/audio/podcast-fr-agro) | [Website](https://agroclim.inrae.fr/) |
-| Portuguese-BR | News Article | Election polls in São Paulo | [Audio](https://audio.com/thatupiso/audio/podcast-thatupiso-br) | [Website](https://noticias.uol.com.br/eleicoes/2024/10/03/nova-pesquisa-datafolha-quem-subiu-e-quem-caiu-na-disputa-de-sp-03-10.htm) |
-
-## Features ✨
-
-- Generate conversational content from multiple-sources and formats (images, websites, YouTube, and PDFs)
-- Customize transcript and audio generation (e.g. style, language, structure, length)
-- Create podcasts from pre-existing or edited transcripts
-- Support for advanced text-to-speech models (OpenAI, ElevenLabs and Edge)
-- Support for running local llms for transcript generation (increased privacy and control)
-- Seamless CLI and Python package integration for automated workflows
-- Multi-language support for global content creation (experimental!)
-
-## Updates 🚀
-
-### v0.2.3 release
-- Add support for running LLMs locally
-- Enable config for running podcastfy with no API KEYs
-- and [more...](https://github.com/souzatharsis/podcastfy/blob/main/CHANGELOG.md#023---2024-10-15)
-
-### v0.2.2 release
-- Podcastfy is now multi-modal! Users can generate audio from images + text inputs!
-
-### v0.2.0 release
-- Users can now customize podcast style, structure, and content
-- Integration with LangChain for better LLM management
-
-## Quickstart 💻
-
-### Prerequisites
-- Python 3.11 or higher
-- `$ pip install ffmpeg` (for audio processing)
-
-### Setup
-1. Install from PyPI
-  `$ pip install podcastfy`
-
-2. Set up your [API keys](usage/config.md)
-
-### Python
+### Webhook Endpoint
 ```python
-from podcastfy.client import generate_podcast
-
-audio_file = generate_podcast(urls=["<url1>", "<url2>"])
+POST /generate_video
+{
+    "input_text": "Story prompt or scenario",
+    "scene_config": {
+        "num_scenes": 3,          # Number of scenes to generate (1-20)
+        "scene_duration": 10,      # Duration of each scene in seconds (1-60)
+        "shots_per_scene": 12      # Number of shots per scene (1-12)
+    },
+    "scene_settings": {
+        "precinct_office": {
+            "location": "Detective's precinct office",
+            "time": "Night",
+            "lighting": {
+                "main": "Dim fluorescent overhead",
+                "accents": "Desk lamp, venetian blind shadows",
+                "mood": "Noir, moody"
+            },
+            "elements": [
+                "Wooden desk with scattered files",
+                "Rain-streaked windows",
+                "Venetian blinds casting shadows",
+                "Cork board with pinned evidence",
+                "Half-empty coffee cups"
+            ],
+            "atmosphere": "Tense, noir detective"
+        }
+    },
+    "character_profiles": {
+        "DetectiveSarah": {
+            "physical": {
+                "gender": "Female",
+                "age": "Early 40s",
+                "ethnicity": "Latina",
+                "height": "5'8\"",
+                "build": "Athletic",
+                "hair": "Dark brown, shoulder-length",
+                "eyes": "Dark brown, intense",
+                "face": "Angular features, high cheekbones"
+            },
+            "clothing": {
+                "style": "Professional but worn",
+                "main": "Charcoal grey suit",
+                "accessories": "Silver watch, detective badge"
+            },
+            "mannerisms": {
+                "posture": "Confident but tired",
+                "movement": "Deliberate, measured",
+                "expression": "Often stern"
+            }
+        }
+    },
+    "visual_style": {
+        "base_prompt": "high-resolution digital photography, Canon EOS 5D Mark IV",
+        "composition": "rule of thirds, golden ratio, cinematic composition",
+        "lighting": "dramatic lighting, deep shadows, high contrast"
+    },
+    "shot_types": [
+        {
+            "name": "Establishing shot",
+            "description": "Set the scene and atmosphere",
+            "camera_angles": ["Wide shot", "High angle", "Dutch angle"],
+            "focus": "Location and mood"
+        }
+    ]
+}
 ```
-### CLI
+
+### Configuration Options
+
+#### Scene Configuration
+- **num_scenes**: Control the number of scenes (1-20)
+- **scene_duration**: Set duration per scene in seconds (1-60)
+- **shots_per_scene**: Define shots per scene (1-12)
+- Automatic title card generation between scenes
+
+#### Scene Settings
+- Define multiple scene locations with detailed attributes
+- Control lighting, atmosphere, and key elements
+- Customize time of day and mood settings
+
+#### Character Profiles
+- Detailed physical descriptions
+- Clothing and accessory details
+- Mannerisms and behavioral traits
+- Consistent visual representation
+
+#### Visual Style
+- Base photography settings
+- Composition guidelines
+- Lighting preferences
+- Overall aesthetic direction
+
+#### Shot Types
+- Define different types of shots
+- Specify camera angles
+- Set focus points
+- Control visual progression
+
+### Processing Flow
+1. **Input Processing**
+   - Story prompt received via webhook
+   - Scene configuration validation
+   - Resource preparation
+
+2. **Dialog Generation**
+   - Character-based dialog creation
+   - Scene direction integration
+   - Emotional markup inclusion
+
+3. **Scene Analysis**
+   - Parallel processing with dedicated Gemini instances
+   - Scene structure identification
+   - Title card generation
+   - Transition planning
+
+4. **Audio Generation**
+   - Text-to-speech conversion
+   - Voice enhancement
+   - Audio normalization
+
+5. **Visual Creation**
+   - Parallel scene visualization
+   - Title card generation
+   - Image generation
+   - Visual consistency checks
+
+6. **Final Assembly**
+   - Title card integration
+   - Audio-visual synchronization
+   - Transition implementation
+   - Output video creation
+
+## Development Guidelines 🛠️
+
+1. **Code Structure**
+   - Clear separation of concerns
+   - Modular component design
+   - Comprehensive error handling
+   - Detailed logging
+
+2. **API Design**
+   - RESTful endpoints
+   - Clear request/response formats
+   - Proper status codes
+   - Comprehensive documentation
+
+3. **Testing**
+   - Unit tests for components
+   - Integration tests for pipeline
+   - Performance benchmarks
+   - Error case coverage
+
+4. **Deployment**
+   - Environment configuration
+   - API key management
+   - Resource scaling
+   - Monitoring setup
+
+## Environment Setup 🌍
+
+Required environment variables:
+```bash
+GEMINI_API_KEY=your_gemini_api_key
+OPENAI_API_KEY=your_openai_api_key
+ELEVENLABS_API_KEY=your_elevenlabs_api_key
+FLUX_API_KEY=your_flux_api_key
 ```
-python -m podcastfy.client --url <url1> --url <url2>
+
+## Running the Application 🚀
+
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
 ```
-  
-## Usage 💻
 
-- [Python Package Quickstart](podcastfy.ipynb)
+2. Start the server:
+```bash
+python server.py
+```
 
-- [API Reference Manual](https://podcastfy.readthedocs.io/en/latest/podcastfy.html)
+3. Test the webhook:
+```bash
+python test_webhook.py
+```
 
-- [CLI](usage/cli.md)
+## Replit Deployment 🚀
 
-- [How to](usage/how-to.md)
+### Quick Deploy
+1. Fork this repository to your Replit account
+2. Add the following secrets in your Replit environment:
+   ```
+   GEMINI_API_KEY=your_gemini_api_key
+   OPENAI_API_KEY=your_openai_api_key
+   ELEVENLABS_API_KEY=your_elevenlabs_api_key
+   FLUX_API_KEY=your_flux_api_key
+   ```
+3. Click "Run" - the server will start automatically
 
-Experience Podcastfy with our [HuggingFace](https://huggingface.co/spaces/thatupiso/Podcastfy.ai_demo) 🤗 Spaces app for a simple URL-to-Audio demo. (Note: This UI app is less extensively tested and capable than the Python package.)
+### Manual Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/podcastfy.git
+   ```
 
-## Customization 🔧
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Podcastfy offers a range of customization options to tailor your AI-generated podcasts:
-- Customize podcast [Conversation](usage/conversation_custom.md) (e.g. format, style, voices)
-- Choose to run [Local LLMs](usage/local_llm.md) (156+ HuggingFace models)
-- Set [System Settings](usage/config_custom.md) (e.g. output directory settings)
+3. Configure environment variables in Replit Secrets:
+   - Add each API key as shown above
+   - Keys are automatically loaded into the environment
+
+4. Start the server:
+   ```bash
+   uvicorn podcastfy.webhook_handler:app --host 0.0.0.0 --port 8000
+   ```
+
+### Testing on Replit
+1. Use the provided test_webhook.py:
+   ```bash
+   python test_webhook.py
+   ```
+
+2. For quick tests, use shorter scene configurations:
+   ```python
+   "scene_config": {
+       "num_scenes": 3,      # Minimal number of scenes
+       "scene_duration": 1,  # 1 second per scene
+       "shots_per_scene": 12 # Still generate all shots for testing
+   }
+   ```
+
+### Replit-Specific Features
+- Automatic ImageMagick configuration
+- Optimized for Replit's environment
+- Parallel scene processing
+- Automatic fallbacks for resource constraints
+
+### Common Issues
+1. ImageMagick Configuration:
+   - Automatically configured via replit.nix
+   - No manual setup required
+
+2. Memory Management:
+   - Scenes are processed in parallel
+   - Images are cleaned up after processing
+   - Temporary files are managed automatically
+
+3. Performance Optimization:
+   - CPU-optimized video encoding
+   - Efficient memory usage
+   - Parallel processing where possible
 
 ## Contributing 🤝
 
-We welcome contributions! See [Guidelines](GUIDELINES.md) for more details.
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-## Example Use Cases 🎧🎶
+## License 📄
 
-1. **Content Summarization**: Busy professionals can stay informed on industry trends by listening to concise audio summaries of multiple articles, saving time and gaining knowledge efficiently.
-
-2. **Language Localization**: Non-native English speakers can access English content in their preferred language, breaking down language barriers and expanding access to global information.
-
-3. **Website Content Marketing**: Companies can increase engagement by repurposing written website content into audio format, providing visitors with the option to read or listen.
-
-4. **Personal Branding**: Job seekers can create unique audio-based personal presentations from their CV or LinkedIn profile, making a memorable impression on potential employers.
-
-5. **Research Paper Summaries**: Graduate students and researchers can quickly review multiple academic papers by listening to concise audio summaries, speeding up the research process.
-
-6. **Long-form Podcast Summarization**: Podcast enthusiasts with limited time can stay updated on their favorite shows by listening to condensed versions of lengthy episodes.
-
-7. **News Briefings**: Commuters can stay informed about daily news during travel time with personalized audio news briefings compiled from their preferred sources.
-
-8. **Educational Content Creation**: Educators can enhance learning accessibility by providing audio versions of course materials, catering to students with different learning preferences.
-
-9. **Book Summaries**: Avid readers can preview books efficiently through audio summaries, helping them make informed decisions about which books to read in full.
-
-10. **Conference and Event Recaps**: Professionals can stay updated on important industry events they couldn't attend by listening to audio recaps of conference highlights and key takeaways.
-
-
-## License
-
-This project is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-## Contributors
-
-<a href="https://github.com/souzatharsis/podcastfy/graphs/contributors">
-  <img alt="contributors" src="https://contrib.rocks/image?repo=souzatharsis/podcastfy"/>
-</a>
-
-## Disclaimer
-
-This tool is designed for personal or educational use. Please ensure you have the necessary rights or permissions before using content from external sources for podcast creation. All audio content is AI-generated and it is not intended to clone real-life humans!
-
-<p align="right" style="font-size: 14px; color: #555; margin-top: 20px;">
-    <a href="#readme-top" style="text-decoration: none; color: #007bff; font-weight: bold;">
-        ↑ Back to Top ↑
-    </a>
-</p>
-
-Copyright (c) 2024. Tharsis T. P. Souza, New York, NY.
+This project is licensed under the MIT License - see the LICENSE file for details.

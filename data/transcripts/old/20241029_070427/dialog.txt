@@ -1,0 +1,30 @@
+<Maria>
+*low, smoky tone* The air hung heavy with the scent of rain and regret in the city that never sleeps, but some secrets even these grimy streets wanted to keep buried.
+</Maria>
+<DetectiveSarah>
+*taps a faded photograph*  Another missing person. <break time='0.2s'/> Last seen near Trinity Church. <break time='0.2s'/>  The pattern's getting clearer, Mike, not that you'd notice. 
+</DetectiveSarah>
+<OfficerMike>
+*shuffles nervously*  But Detective, that place... they say...
+</OfficerMike>
+<DetectiveSarah>
+*sharp glare* "They" being the guys down at the precinct who chase shadows? <break time='0.2s'/>  Stick to the facts, Mike. We need hard evidence, not ghost stories.
+</DetectiveSarah>
+<OfficerMike>
+*clears throat* Right. But the church has been abandoned for decades. Why would anyone go there?
+</OfficerMike>
+<EmmaLawson>
+*voice smooth as silk, eyes like ice* Some places hold a certain... allure, wouldn't you say, Officer?  Places forgotten, where shadows whisper secrets the living can't hear. 
+</EmmaLawson>
+<Maria>
+*rising tension*  The woman materialized from the gloom of the station house like a phantom herself. Emma Lawson. She knew things, things she shouldn't.
+</Maria>
+<DetectiveSarah>
+*eyes narrowed*  Ms. Lawson. Always a pleasure. You have information for us, I hope? Something more concrete than whispers? 
+</DetectiveSarah>
+<EmmaLawson>
+*cryptic smile*  Detective, you wound me. Let's just say, sometimes the answers find you, when you least expect it. But be careful what you seek in the shadows. You might not like what's looking back. 
+</EmmaLawson>
+<Maria>
+*voice fading to a whisper*  The game was afoot, but on this rain-slicked concrete jungle, the players were far from clear. One thing was certain - whatever haunted Trinity Church, it was drawing them all in deeper. 
+</Maria>

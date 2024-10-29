@@ -1,0 +1,30 @@
+<Maria>
+*a smoky jazz tune underscores the scene, the faint scent of rain lingers in the air*  The old precinct house felt heavy tonight, weighed down by years of unsolved cases and whispered secrets. 
+</Maria>
+<DetectiveSarah>
+*eyes fixed on a map dotted with red pushpins*  Another one vanished. Same M.O., same vicinity as the others. <break time='0.2s'/> That church is like a black hole, swallowing them whole.
+</DetectiveSarah>
+<OfficerMike>
+*fidgeting with his cap*  You ever hear those stories, Detective? About that church?  <break time='0.2s'/>  They say...
+</OfficerMike>
+<DetectiveSarah>
+*cutting him off, voice sharp*  We deal in facts, Officer, not ghost stories. 
+</DetectiveSarah>
+<OfficerMike>
+*swallowing hard*  Right, Detective. But something doesn't sit right.
+</OfficerMike>
+<Maria>
+*the camera pans to a dimly lit interrogation room, a lone figure sits bathed in the harsh glare of a single bulb*
+</Maria>
+<EmmaLawson>
+*lips painted a crimson red, a knowing smirk playing on them* They say the city never sleeps. <break time='0.2s'/>  But some secrets, Detective, are best left undisturbed. 
+</EmmaLawson>
+<DetectiveSarah>
+*leaning forward, eyes narrowed*  Maybe you can enlighten us, Miss Lawson. You seem to know a lot about secrets.
+</DetectiveSarah>
+<EmmaLawson>
+*a flicker of something unreadable in her eyes*  Innocence is a fragile thing, Detective. Easily lost in this city.
+</EmmaLawson>
+<Maria>
+*the tension crackles, thick and heavy as the smoke from Detective Sarah's cigarette*  In the city that never sleeps, some nightmares linger long after dawn. 
+</Maria>

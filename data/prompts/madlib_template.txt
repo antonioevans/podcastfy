@@ -1,0 +1,36 @@
+SCENE TEMPLATE:
+In a {scene_settings.location} at {scene_settings.time_of_day}, {scene_settings.weather} creates an ominous atmosphere. The {characters.detective.appearance}, known for being {characters.detective.personality}, with {characters.detective.background}, studies the case files intently.
+
+Nearby, a {characters.officer.appearance}, {characters.officer.personality} with {characters.officer.background}, watches nervously. Their attention is focused on the {characters.suspect.appearance}, who remains {characters.suspect.personality}, their {characters.suspect.background} evident in every calculated movement.
+
+This {case.type} case hinges on {case.evidence}, with a disturbing {case.twist} coming to light. The {structure.opening} sets the tone, building to a {structure.climax} before ending with a {structure.ending} that leaves the audience of {settings.audience} on the edge of their seats.
+
+IMAGE GENERATION TEMPLATE:
+[Timestamp 0.0]: {scene_settings.location}, {scene_settings.weather}, {scene_settings.time_of_day}. {characters.detective.appearance} studying files under harsh light.
+
+[Timestamp 5.0]: Close-up of {characters.suspect.appearance}, reflection in two-way mirror, {scene_settings.weather} visible through window.
+
+[Timestamp 10.0]: {characters.officer.appearance} watching through glass, nervous energy evident, while {characters.suspect.appearance} maintains unnervingly calm demeanor.
+
+VOICE PROMPTS:
+<DetectiveSarah>
+*{characters.detective.personality}* "The {case.evidence} tells an interesting story..."
+</DetectiveSarah>
+
+<OfficerMike>
+*{characters.officer.personality}* "Detective, you need to see this..."
+</OfficerMike>
+
+<EmmaLawson>
+*{characters.suspect.personality}* "Perhaps you're looking at this... incorrectly."
+</EmmaLawson>
+
+This template ensures consistent:
+- Scene descriptions
+- Character appearances
+- Weather/atmosphere
+- Evidence presentation
+- Image generation
+- Voice acting cues
+
+All while maintaining the noir/thriller atmosphere and proper story progression.
